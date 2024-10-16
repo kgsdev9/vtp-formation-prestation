@@ -17,6 +17,8 @@ class RoleSeeder extends Seeder
             ['name'=> 'Super Admin'] ,
             ['name'=> 'formateur'] ,
             ['name'=> 'utilisateur'] ,
+            ['name'=> 'prestataire'] ,
+            ['name'=> 'entreprise'] ,
         ]);
     }
 }

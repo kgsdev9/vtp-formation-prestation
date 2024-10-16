@@ -100,18 +100,17 @@ class RegisterComponent extends Component
             ]);
         } elseif ($this->accountType === 'prestation') {
 
-
             $data =$this->validate([
-                'nom_prestataire' => 'required|string|max:255',
-                'prenom_prestataire' => 'required|string|max:255',
-                'type_prestation' => 'required|string|max:15',
-                'email' => 'required|email|max:255',
-                'adresse' => 'required|string|max:1000',
-                'ville' => 'required|string|max:1000',
-                'pays' => 'required|string|max:1000',
-                'telephone' => 'required|string|max:1000',
-                'description' => 'required|string|max:1000',
-                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',  // Validation de l'image
+                'nom_prestataire' => 'required|string',
+                'prenom_prestataire' => 'required|string',
+                'type_prestation' => 'required|string',
+                'email' => 'required|email',
+                'adresse' => 'required|string',
+                'ville' => 'required|string',
+                'pays' => 'required|string',
+                'telephone' => 'required|string',
+                'description' => 'required|string',
+                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
 
             ]);
 

@@ -28,7 +28,7 @@ class AccountVerifiedNotification extends Notification
             ->subject('Votre compte a été vérifié')
             ->greeting('Bonjour ' . $notifiable->name)
             ->line('Votre compte a bien été vérifié.')
-            ->action('Accéder à votre compte', url('/home'))
+            ->action('Accéder à votre compte', url('/'))
             ->line('Merci d\'utiliser notre application !');
     }
 

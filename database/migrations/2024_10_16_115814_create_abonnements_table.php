@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePrestationPrixesTable extends Migration
+class CreateAbonnementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreatePrestationPrixesTable extends Migration
      */
     public function up()
     {
-        Schema::create('prestation_prixes', function (Blueprint $table) {
+        Schema::create('abonnements', function (Blueprint $table) {
             $table->id();
+            $table->string('libelleabonnement');
+            $table->integer('prix');
+            $table->texe('commentaire');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreatePrestationPrixesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prestation_prixes');
+        Schema::dropIfExists('abonnements');
     }
 }
