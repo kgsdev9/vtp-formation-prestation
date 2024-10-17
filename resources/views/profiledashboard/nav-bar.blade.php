@@ -20,7 +20,34 @@
                                 class="fe fe-home nav-icon"></i>Accueil </a>
                     </li>
 
-                    @can(['is_formateur'])
+                    @can(['is_prestataire'])
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('courses.create')}}"><i
+                                class="fe fe-book nav-icon"></i>Nouvelle  Prestation </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('courses.index')}}"><i
+                                class="fe fe-book nav-icon"></i>Mes Prestations </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('courses.index')}}"><i
+                                class="fe fe-book nav-icon"></i>Mes Skills</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('courses.index')}}"><i
+                                class="fe fe-book nav-icon"></i>Mes modifier mon profile</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('courses.index')}}"><i
+                                class="fe fe-book nav-icon"></i>Mes Factures</a>
+                    </li>
+                    @endcan
+
+                    @can(['is_entreprise'])
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('courses.create')}}"><i
                                 class="fe fe-book nav-icon"></i>Nouvelle Formation  </a>
@@ -40,7 +67,7 @@
 
                 <ul class="list-unstyled ms-n2 mb-0">
                     <!-- Nav item -->
-                    @can(['is_formateur'])
+                    @can(['is_entreprise'])
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('profile.formateurs')}}"><i
                                 class="fe fe-settings nav-icon"></i>Modifier Mon Profile</a>

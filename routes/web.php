@@ -41,6 +41,7 @@ Route::get('/annuaire-des-categories', [HomeController::class, 'homeCategory'])-
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/annuaire-des-formations', [HomeController::class, 'annuaireFormation'])->name('formation.annuaire');
 Route::get('/annuaire-des-formateurs', [HomeController::class, 'annuaireFormateur'])->name('formateur.annuaire');
+Route::get('/detail/profile/prestataire/{id}', [HomeController::class, 'detailPrestataire'])->name('detail.prestataire');
 Route::get('/sucess/{name}', [ActionController::class, 'registerSuccess'])->name('register.sucess');
 Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
 Route::post('/post/user', [RegisterController::class, 'store'])->name('register');

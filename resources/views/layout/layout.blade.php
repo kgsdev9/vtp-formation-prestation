@@ -30,8 +30,10 @@
                         </svg>
                     </a>
                     @guest
-                    <a href="{{route('auth.login')}}" class="btn btn-outline-dark ">Connexion</a>
-                    <a href="{{route('become.teacher')}}" class="btn btn-dark d-none d-md-block">Devenir Prestataire</a>
+                    <a href="{{route('auth.login')}}" class="btn btn-outline-dark btn-sm "> <i class="fe fe-user nav-icon"></i> Connexion</a>
+                    <a href="{{route('become.teacher')}}" class="btn btn-dark d-none d-md-block btn-sm"> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
+                      </svg>   Commencer</a>
                     @else
                     <a href="{{route('dashboard.users')}}" class="btn btn-outline-dark btn-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
@@ -204,6 +206,7 @@
 </div>
     @livewireScripts
     @include('sweetalert::alert')
-    
+
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
