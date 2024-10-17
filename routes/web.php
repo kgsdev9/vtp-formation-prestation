@@ -50,7 +50,7 @@ Route::post('/login/User', [LoginController::class, 'loginForUser'])->name('post
 Route::post('logout', [LogoutController::class, 'logout'])->name('logout');
 Route::get('/dashboards', [DashboardController::class, 'index'])->name('dashboard.users')->middleware('auth');
 Route::post('/createNewTeacher', [FormateurController::class, 'store'])->name('post.new.formateur');
-Route::get('/become-teacher', [FormateurController::class, 'createNewFormateur'])->name('become.teacher');
+Route::get('/become-teacher', [FormateurController::class, 'createNewFormateur'])->name('become.teacher')->middleware('guest');
 Route::get('/profile-formateur', [ProfileController::class, 'profileFormateur'])->name('profile.formateurs');
 Route::get('/formateur-store/{slug}-{id}', [HomeController::class, 'boutiqueFormateur'])->name('boutique.formateur');
 Route::resource('courses', CourseController::class);
