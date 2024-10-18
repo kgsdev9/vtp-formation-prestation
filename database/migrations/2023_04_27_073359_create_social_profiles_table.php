@@ -17,8 +17,10 @@ return new class extends Migration
             $table->string('facebook');
             $table->string('github');
             $table->string('youtube');
-            $table->unsignedBigInteger('formateur_id');
-            $table->foreign('formateur_id')->references('id')->on('formateurs');
+            $table->unsignedBigInteger('prestataire_id');
+            $table->unsignedBigInteger('entreprise_id');
+            $table->foreign('prestataire_id')->references('id')->on('prestataires');
+            $table->foreign('entreprise_id')->references('id')->on('entreprises');
             $table->timestamps();
         });
     }

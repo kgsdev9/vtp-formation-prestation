@@ -16,7 +16,7 @@
                 </ol>
               </nav>
               <div class="d-flex flex-column">
-                <h1 class="mb-0">Liste des formateurs</h1>
+                <h1 class="mb-0">Liste des prestataires</h1>
                 <p class="mb-0">Nos Formateurs sont verifiés et on des competences requise pour vos projets.</p>
               </div>
             </div>
@@ -124,7 +124,7 @@
                     <div class="card rounded-4 card-bordered card-lift">
                       <div class="p-3 d-flex flex-column gap-3">
                         <!--img-->
-                        <a href="#">
+                        <a href="{{route('detail.prestataire', $vallFormateurs->id)}}">
                           <img src="../assets/images/mentor/mentor-img-1.jpg" alt="mentor 1" class="img-fluid w-100 rounded-4">
                         </a>
                         <!--content-->
@@ -133,7 +133,7 @@
                             <div>
                               <div class="d-flex align-items-center gap-2">
                                 <h3 class="mb-0">
-                                  <a href="#" class="text-reset">{{$vallFormateurs->fullname}}</a>
+                                  <a href="{{route('detail.prestataire', $vallFormateurs->id)}}" class="text-reset">{{$vallFormateurs->nom_prestataire}} {{$vallFormateurs->prenom_prestataire}}</a>
                                 </h3>
                                 <span>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-patch-check-fill text-success" viewBox="0 0 16 16">
@@ -141,14 +141,14 @@
                                   </svg>
                                 </span>
                               </div>
-                              <span class="text-gray-800">{{$vallFormateurs->poste}}</span>
+                              <span class="text-gray-800">{{$vallFormateurs->type_prestation}}</span>
                             </div>
 
                             <div class="d-flex align-items-center justify-content-between fs-6">
                               <div>
-                                <span>@ Microsoft</span>
+                                <span>@ Adresse</span>
                                 <div class="vr mx-2 text-gray-200"></div>
-                                <span>{{$vallFormateurs->anneexperience}} Exp.</span>
+                                <span>{{$vallFormateurs->adresse}}</span>
                               </div>
                               <div class="d-flex gap-1 align-items-center lh-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
@@ -161,7 +161,8 @@
                             </div>
                           </div>
                           <div class="d-grid">
-                            <a href="#!" class="btn btn-outline-secondary" >Consuler</a>
+                            <a href="{{route('detail.prestataire', $vallFormateurs->id)}}
+                                " class="btn btn-outline-secondary" >Consuler</a>
                           </div>
                         </div>
                       </div>

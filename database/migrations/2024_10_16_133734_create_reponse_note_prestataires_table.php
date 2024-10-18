@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypePrestationsTable extends Migration
+class CreateReponseNotePrestatairesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateTypePrestationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_prestations', function (Blueprint $table) {
+        Schema::create('reponse_note_prestataires', function (Blueprint $table) {
             $table->id();
-            $table->string('libelletypeprestation');
+            $table->foreignId('noteprestataire_id')->constrained('note_prestataires')->onDelete('cascade'); 
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->text('contenu');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateTypePrestationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_prestations');
+        Schema::dropIfExists('reponse_note_prestataires');
     }
 }

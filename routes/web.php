@@ -41,6 +41,7 @@ Route::get('/annuaire-des-categories', [HomeController::class, 'homeCategory'])-
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/annuaire-des-formations', [HomeController::class, 'annuaireFormation'])->name('formation.annuaire');
 Route::get('/annuaire-des-formateurs', [HomeController::class, 'annuaireFormateur'])->name('formateur.annuaire');
+Route::get('/detail/profile/prestataire/{id}', [HomeController::class, 'detailPrestataire'])->name('detail.prestataire');
 Route::get('/sucess/{name}', [ActionController::class, 'registerSuccess'])->name('register.sucess');
 Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
 Route::post('/post/user', [RegisterController::class, 'store'])->name('register');
@@ -49,7 +50,7 @@ Route::post('/login/User', [LoginController::class, 'loginForUser'])->name('post
 Route::post('logout', [LogoutController::class, 'logout'])->name('logout');
 Route::get('/dashboards', [DashboardController::class, 'index'])->name('dashboard.users')->middleware('auth');
 Route::post('/createNewTeacher', [FormateurController::class, 'store'])->name('post.new.formateur');
-Route::get('/become-teacher', [FormateurController::class, 'createNewFormateur'])->name('become.teacher');
+Route::get('/become-teacher', [FormateurController::class, 'createNewFormateur'])->name('become.teacher')->middleware('guest');
 Route::get('/profile-formateur', [ProfileController::class, 'profileFormateur'])->name('profile.formateurs');
 Route::get('/formateur-store/{slug}-{id}', [HomeController::class, 'boutiqueFormateur'])->name('boutique.formateur');
 Route::resource('courses', CourseController::class);

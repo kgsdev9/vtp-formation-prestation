@@ -25,11 +25,13 @@ class FormateurController extends Controller
     public function __construct(RoleService $roleService)
     {
         $this->roleService  = $roleService ;
-        // $this->middleware('auth');
+        $this->middleware('guest');
     }
 
 
     public function createNewFormateur() {
+
+
         return view('become.formateurs.becoming', [
             'roleAsFormteur' => $this->roleService->roleFormateur(),
             'allTags'=> Specialite::all()

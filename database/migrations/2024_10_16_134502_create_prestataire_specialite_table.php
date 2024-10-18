@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePrestationsTable extends Migration
+class CreatePrestataireSpecialiteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreatePrestationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('prestations', function (Blueprint $table) {
+        Schema::create('prestataire_specialite', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('specialite_id')->constrained('specialites')->onDelete('cascade');
+            $table->foreignId('prestataire_id')->constrained('prestataires')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreatePrestationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prestations');
+        Schema::dropIfExists('prestataire_specialite');
     }
 }

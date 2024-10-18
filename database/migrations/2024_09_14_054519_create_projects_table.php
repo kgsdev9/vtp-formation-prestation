@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
+            $table->string('url');
             $table->text('description');
-            $table->unsignedBigInteger('formateur_id');
-            $table->foreign('formateur_id')->references('id')->on('formateurs');
+            $table->unsignedBigInteger('prestataire_id');
+            $table->foreign('prestataire_id')->references('id')->on('prestataires');
             $table->timestamps();
         });
     }

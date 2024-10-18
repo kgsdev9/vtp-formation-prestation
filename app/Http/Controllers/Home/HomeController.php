@@ -15,6 +15,8 @@ use App\Http\Controllers\Episode;
 use App\Models\CourseEssentielle;
 use App\Models\Episode as ModelsEpisode;
 use App\Models\Level;
+use App\Models\Prestataire;
+use App\Models\Prestation;
 use App\Models\Specialite;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,6 +34,13 @@ class HomeController extends Controller
         $this->categoryService = $categoryService ;
         $this->teacherService = $teacherService ;
         $this->codeCommande = rand(1230, 15000).'SAS-FORMATION' ;
+    }
+
+    public function detailPrestataire($id) {
+
+        $prestataire = Prestataire::find($id);
+       
+        return view('home.detailprestataire', compact('prestataire'));
     }
 
 
@@ -115,7 +124,7 @@ class HomeController extends Controller
 
      public function annuaireFormateur() {
         return view('home.formateur', [
-            'allFormateurs' => $this->teacherService->all(),
+            'allFormateurs' => Prestataire::all(),
             'allTags'=> Specialite::all()
         ]);
      }

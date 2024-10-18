@@ -32,6 +32,7 @@ class VerificationController extends Controller
         if ($user->markEmailAsVerified())
         {
             $user->email_verified_at = now();
+            $user->confirmated_at = 1;
             $user->save();
             $user->notify(new AccountVerifiedNotification());
         }

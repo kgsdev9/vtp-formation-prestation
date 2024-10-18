@@ -24,10 +24,10 @@ return new class extends Migration
             $table->boolean('popular')->default('0');
             $table->boolean('published')->default('0');
             $table->unsignedBigInteger('level_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('entreprise_id');
             $table->unsignedBigInteger('category_id');
             $table->foreign('level_id')->references('id')->on('levels');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('entreprise_id')->references('id')->on('entreprises');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
