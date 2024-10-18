@@ -39,7 +39,7 @@ class HomeController extends Controller
     public function detailPrestataire($id) {
 
         $prestataire = Prestataire::find($id);
-       
+
         return view('home.detailprestataire', compact('prestataire'));
     }
 
@@ -48,7 +48,6 @@ class HomeController extends Controller
         return view('welcome', [
         'allCourse' => $this->courseService->all(),
         'randomCourse' => $this->courseService->randomCourse(),
-        'teacherAll' => $this->teacherService->all(),
         'category' => $this->categoryService->categoryTakeRandom(),
         'enVogue' => $this->categoryService->categoryenVogue()
         ]);
