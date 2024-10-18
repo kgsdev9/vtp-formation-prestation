@@ -208,8 +208,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     @elseif ($accountType === 'prestation')
                     <div class="card">
                         <div class="card-header">Informations du prestataire</div>

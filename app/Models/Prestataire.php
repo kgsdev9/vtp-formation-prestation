@@ -21,7 +21,8 @@ class Prestataire extends Model
         'site_web',
         'description',
         'photo',
-        'identifiant'
+        'identifiant',
+        'active_at'
     ];
 
 }

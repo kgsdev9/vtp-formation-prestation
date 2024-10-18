@@ -9,8 +9,16 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['codeCommande','fullname','phone', 'adresse' , 'email',  'course_id', 'user_id', 'amount', 'status',];
-
+    protected $fillable = ['codeCommande',
+                            'fullname',
+                            'phone',
+                            'adresse' ,
+                             'email',
+                             'course_id',
+                             'user_id',
+                              'amount',
+                              'status',
+                            ];
 
     public function course() {
      return $this->belongsTo(Course::class, 'course_id');

@@ -10,7 +10,7 @@ class Course extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','slug', 'category_id', 'level_id', 'user_id', 'image', 'description', 'prix', 'url_video', 'typecours','duration'];
+    protected $fillable = ['title','slug', 'category_id', 'level_id', 'user_id', 'image', 'description', 'prix', 'url_video', 'typecours','duration', 'supportcourrs', 'exercicescours'];
 
     public function level() {
         return $this->belongsTo(Level::class, 'level_id');

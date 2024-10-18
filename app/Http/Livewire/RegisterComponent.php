@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Entreprise;
 use App\Models\Prestataire;
 use App\Models\Role;
 use Livewire\Component;
@@ -80,8 +81,9 @@ class RegisterComponent extends Component
     {
 
         $this->isSubmitting = true;
-        if ($this->accountType === 'entreprise') {
-            $this->validate([
+        if ($this->accountType === 'entreprise')
+        {
+           $data=  $this->validate([
                 'company_name' => 'required|string|max:255',
                 'siren' => 'required|string|max:255',
                 'numero_tva' => 'nullable|string|max:255',
@@ -98,6 +100,38 @@ class RegisterComponent extends Component
                 'nombre_employes' => 'required|integer',
                 'chiffre_affaires' => 'required|numeric',
             ]);
+
+            $user = User::create([
+                'name' => $this->company_name,
+                'email' => $this->email,
+                'password' => Hash::make(12345),
+                'role_id' => 5,
+            ]);
+
+            $prestation = Entreprise::create([
+                'nom_entreprise' => $this->company_name,
+                'siren' => $this->siren,
+                'numero_tva' => $this->numero_tva,
+                'type_entreprise' => $this->type_entreprise,
+                'adresse' => $this->adresse,
+                'ville' =>  $this->ville,
+                'code_postal' => $this->code_postal,
+                'pays' => $this->pays,
+                'telephone' => $this->telephone,
+                'email' => $this->email,
+                'site_web' => $this->site_web,
+                'description'=> $this->description,
+                'nombre_employes'=> $this->nombre_employes,
+                'chiffre_affaires'=> $this->chiffre_affaires,
+                'photo' => $this->photo ? $this->photo->store('prestations_photos', 'public') : null,  // Gestion de la photo
+            ]);
+
+            $token = Str::random(60);
+            // Envoyer la notification avec le lien de confirmation
+            $user->notify(new AccountConfirmation($token));
+
+            return redirect()->route('confirmated.compte');
+
         } elseif ($this->accountType === 'prestation') {
 
 
