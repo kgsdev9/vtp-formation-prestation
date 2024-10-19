@@ -138,6 +138,7 @@
                         </div>
                       </div>
                       <div class="d-flex flex-column gap-3">
+                        <!-- Affichage des évaluations -->
                         @foreach($evaluations as $evaluation)
                             <div class="py-4 d-flex flex-column gap-3 border-bottom">
                                 <div class="d-flex flex-row justify-content-between align-items-md-center">
@@ -168,15 +169,17 @@
                                         </div>
                                     </div>
 
-                                    <div>
-                                        <button class="btn btn-sm btn-primary" wire:click="editEvaluation({{ $evaluation->id }})">
-                                            Modifier
-                                        </button>
+                                    @if ($evaluation->user_id === auth()->id())
+                                        <div>
+                                            <button class="btn btn-sm btn-primary" wire:click="editEvaluation({{ $evaluation->id }})">
+                                                Modifier
+                                            </button>
 
-                                        <button class="btn btn-sm btn-danger" wire:click="deleteEvaluation({{ $evaluation->id }})">
-                                            Supprimer
-                                        </button>
-                                    </div>
+                                            <button class="btn btn-sm btn-danger" wire:click="deleteEvaluation({{ $evaluation->id }})">
+                                                Supprimer
+                                            </button>
+                                        </div>
+                                    @endif
                                 </div>
 
                                 <div>
@@ -184,30 +187,82 @@
                                 </div>
                             </div>
                         @endforeach
+                            @if(!$editingEvaluationId)
+                            <div class="mt-4">
+                                <h5>Ajouter une évaluation</h5>
+                                <form wire:submit.prevent="submitRating">
+                                    <div class="mb-3 form-floating">
+                                        <select id="rating" class="form-select" wire:model="rating" required>
+                                            <option value="" disabled selected>Choisir une note</option>
+                                            <option value="1">1 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star text-muted" viewBox="0 0 16 16">
+                                                <path d="M2.866 14.85c-.078.444.36.791.746.592L8 13.187l4.389 2.255c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.159-.888-.282-.95l-4.898-.696L8 0.792 5.816 5.119l-4.898.696c-.441.062-.612.636-.282.95l3.522 3.356-.83 4.73z"></path>
+                                            </svg></option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                        <label for="rating" class="form-label">Note</label>
+                                        @error('rating') <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
+
+                                    <div class="mb-3 form-floating">
+                                        <textarea id="comment" class="form-control" wire:model="comment" rows="4" required></textarea>
+                                        <label for="comment" class="form-label">Commentaire</label>
+                                        @error('comment') <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                                        <!-- Ajout du spinner ici -->
+                                        <div wire:loading wire:target="submitRating" class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Chargement...</span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            @endif
+
+                            <!-- Formulaire de modification d'évaluation (en dehors de la boucle) -->
+                            @if($editingEvaluationId)
+                            <div class="mt-4">
+                                <h5>Modifier l'évaluation</h5>
+                                <form wire:submit.prevent="updateEvaluation">
+                                    <!-- Note -->
+                                    <div class="mb-3">
+                                        <label for="rating" class="form-label">Note</label>
+                                        <select id="rating" class="form-select" wire:model="rating" required>
+                                            <option value="" disabled selected>Choisir une note</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                        @error('rating') <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
+
+                                    <!-- Commentaire avec floating label -->
+                                    <div class="mb-3 form-floating">
+                                        <textarea id="comment" class="form-control" wire:model="comment" rows="4" required></textarea>
+                                        <label for="comment">Commentaire</label>
+                                        @error('comment') <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
+
+                                    <!-- Boutons -->
+                                    <div class="d-flex justify-content-between">
+                                        <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                                        <!-- Ajout du spinner ici -->
+                                        <div wire:loading wire:target="updateEvaluation" class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Chargement...</span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            @endif
+
                     </div>
 
-                    <!-- Formulaire de modification d'évaluation (en dehors de la boucle) -->
-                    @if($editingEvaluationId)
-                        <div class="mt-4">
-                            <h5>Modifier l'évaluation</h5>
-                            <form wire:submit.prevent="updateEvaluation">
-                                <div class="mb-3">
-                                    <label for="rating" class="form-label">Note</label>
-                                    <input type="number" id="rating" class="form-control" wire:model="rating" min="1" max="5" required>
-                                    @error('rating') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="comment" class="form-label">Commentaire</label>
-                                    <textarea id="comment" class="form-control" wire:model="comment" rows="4" required></textarea>
-                                    @error('comment') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Mettre à jour</button>
-                                <button type="button" class="btn btn-secondary" wire:click="resetForm()">Annuler</button>
-                            </form>
-                        </div>
-                    @endif
 
 
                     </div>
