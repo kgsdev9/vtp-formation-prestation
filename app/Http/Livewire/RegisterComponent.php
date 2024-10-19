@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Entreprise;
 use App\Models\Prestataire;
 use App\Models\Role;
+use App\Models\TypePrestation;
 use Livewire\Component;
 use App\Notifications\AccountConfirmation;
 use Illuminate\Support\Str;
@@ -19,6 +20,7 @@ class RegisterComponent extends Component
     public $accountType = null; // Type de compte sélectionné
     public $company_name, $name, $siren, $numero_tva, $type_entreprise, $adresse, $ville, $code_postal, $pays, $telephone, $email, $site_web, $description, $logo, $nombre_employes, $chiffre_affaires, $password, $password_confirmation;
     public $isSubmitting = false;
+    public $typeprestation_id;
 
     public $nom_prestataire, $prenom_prestataire, $type_prestation, $photo ,$identifiant;
     // Validation conditionnelle en fonction des étapes et types de comptes
@@ -83,6 +85,7 @@ class RegisterComponent extends Component
         $this->isSubmitting = true;
         if ($this->accountType === 'entreprise')
         {
+
            $data=  $this->validate([
                 'company_name' => 'required|string|max:255',
                 'siren' => 'required|string|max:255',
@@ -134,10 +137,11 @@ class RegisterComponent extends Component
 
         } elseif ($this->accountType === 'prestation') {
 
+        
             $data =$this->validate([
                 'nom_prestataire' => 'required|string',
                 'prenom_prestataire' => 'required|string',
-                'type_prestation' => 'required|string',
+                'typeprestation_id' => 'required',
                 'email' => 'required|email',
                 'adresse' => 'required|string',
                 'ville' => 'required|string',
@@ -158,7 +162,7 @@ class RegisterComponent extends Component
             $prestation = Prestataire::create([
                 'nom_prestataire' => $this->nom_prestataire,
                 'prenom_prestataire' => $this->prenom_prestataire,
-                'type_prestation' => $this->type_prestation,
+                'typepresatation_id' => $this->typeprestation_id,
                 'adresse' => $this->adresse,
                 'ville' => $this->ville,
                 'pays' =>  $this->pays,
@@ -249,11 +253,17 @@ class RegisterComponent extends Component
             $this->step--;
         }
     }
+    public function updatedTypePrestation($value)
+    {
+        $this->emit('typePrestationUpdated');
+    }
+
 
 
     public function render()
     {
         $listeroles = Role::all();
-        return view('livewire.register-component', compact('listeroles'));
+        $listetypeprestations = TypePrestation::all();
+        return view('livewire.register-component', compact('listeroles' , 'listetypeprestations'));
     }
 }

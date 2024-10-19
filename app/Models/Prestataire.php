@@ -12,9 +12,9 @@ class Prestataire extends Model
     protected $fillable = [
         'nom_prestataire',
         'prenom_prestataire',
-        'type_prestation',
         'adresse',
         'ville',
+        'typepresatation_id',
         'pays',
         'telephone',
         'email',
@@ -24,5 +24,9 @@ class Prestataire extends Model
         'identifiant',
         'active_at'
     ];
+
+    public function typeprestation() {
+        return $this->belongsTo(TypePrestation::class, 'typepresatation_id');
+    }
 
 }

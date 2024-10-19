@@ -232,11 +232,14 @@
                             <div class="row">
                                 <!-- Type de prestation -->
                                 <div class="col-md-6 mb-3">
-                                    <div class="form-floating">
-                                        <input type="text" wire:model="type_prestation" class="form-control" id="type_prestation" placeholder="Type de prestation">
-                                        <label for="type_prestation">Type de prestation</label>
-                                    </div>
+                                    <select wire:model="typeprestation_id" id="type_prestation" class="form-control">
+                                        <option value="">Sélectionnez un type de prestation</option>
+                                        @foreach ($listetypeprestations as $type)
+                                            <option value="{{ $type->id }}">{{ $type->libelletypeprestation }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
+
                                 <!-- Adresse -->
                                 <div class="col-md-6 mb-3">
                                     <div class="form-floating">
@@ -404,4 +407,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialisation de Select2
+
+            $('#type_prestation').select2({
+                placeholder: "Sélectionnez un type de prestation",
+                allowClear: true
+            });
+
+            // Rafraîchir Select2 après chaque mise à jour Livewire
+            Livewire.on('typePrestationUpdated', () => {
+                $('#type_prestation').trigger('change');
+            });
+        });
+    </script>
+
+
 </div>
+
+

@@ -26,8 +26,8 @@
                                 <h1 class="mb-0"> {{ $prestataire->nom_prestataire }} {{ $prestataire->prenom_prestataire }}</h1>
                                 <!--content-->
                                 <div class="d-flex flex-lg-row flex-column gap-2">
-                                  <small class="fw-medium text-gray-800">{{ $prestataire->type_prestation }}&nbsp;at&nbsp;Apple</small>
-                                  <small class="fw-medium text-success">7+ years in UX Design &amp; Brand Design.</small>
+                               
+                                  <small class="fw-medium text-success">{{ $prestataire->typeprestation->libelletypeprestation }}</small>
                                 </div>
                               </div>
                               <!--button-->
