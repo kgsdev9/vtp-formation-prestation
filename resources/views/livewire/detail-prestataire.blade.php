@@ -11,12 +11,12 @@
                   <!--card-->
                   <div class="card">
                     <!--img-->
-                    <div class="rounded-top-3" style="background-image: url(../assets/images/mentor/mentor-single.png); background-position: center; background-size: cover; background-repeat: no-repeat; height: 228px"></div>
+                    <div class="rounded-top-3" style="background-image: url('{{ asset('mentor-background.png') }}'); background-position: center; background-size: cover; background-repeat: no-repeat; height: 228px"></div>
                     <div class="card-body p-md-5">
                       <div class="d-flex flex-column gap-5">
                         <!--img-->
                         <div class="mt-n8">
-                          <img src="../assets/images/mentor/mentor-img-single.jpg" alt="mentor 1" class="img-fluid rounded-4 mt-n8">
+                          <img src="{{asset('mentor-img-single.jpg')}}" alt="mentor 1" class="img-fluid rounded-4 mt-n8">
                         </div>
                         <div class="d-flex flex-column gap-5">
                           <div class="d-flex flex-column gap-3">
@@ -26,7 +26,7 @@
                                 <h1 class="mb-0"> {{ $prestataire->nom_prestataire }} {{ $prestataire->prenom_prestataire }}</h1>
                                 <!--content-->
                                 <div class="d-flex flex-lg-row flex-column gap-2">
-                               
+
                                   <small class="fw-medium text-success">{{ $prestataire->typeprestation->libelletypeprestation }}</small>
                                 </div>
                               </div>
@@ -53,8 +53,8 @@
                                 </span>
                                 <span>
                                   <!--text-->
-                                  <span class="text-gray-800 fw-bold">5.0</span>
-                                  (16&nbsp;Avis)
+                                  <span class="text-gray-800 fw-bold"> {{ number_format($prestataire->average_rating, 2) }}</span>
+                                  ({{count($prestataire->notePrestations)}}&nbsp;Avis)
                                 </span>
                               </div>
                               <div class="d-flex flex-row gap-2 align-items-center lh-1">

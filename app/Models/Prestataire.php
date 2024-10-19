@@ -29,4 +29,17 @@ class Prestataire extends Model
         return $this->belongsTo(TypePrestation::class, 'typepresatation_id');
     }
 
+    public function notePrestations() {
+        return $this->hasMany(NotePrestataire::class);
+    }
+
+    public function getAverageRatingAttribute()
+    {
+        // Calculer la moyenne des notes. Si aucune note n'est trouvée, retourner 0
+        return $this->notePrestations()->avg('note') ?? 0;
+    }
+
+
+    
+
 }
