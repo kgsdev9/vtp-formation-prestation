@@ -139,80 +139,103 @@
                       </div>
                       <div class="d-flex flex-column gap-3">
                         @foreach($evaluations as $evaluation)
-                        <div class="py-4 d-flex flex-column gap-3 border-bottom">
-                          <div class="d-flex flex-row justify-content-between align-items-md-center">
-                            <div class="d-flex flex-row gap-3 align-items-center">
-                              <div>
-                                <img src="{{ asset('path/to/avatar/'.$evaluation->user->avatar) }}" alt="avatar" class="avatar avatar-lg rounded-circle">
-                              </div>
-                              <div>
-                                <!--heading-->
-                                <h4 class="mb-1">{{ $evaluation->user->name }}</h4>
-                                <div class="d-flex flex-md-row flex-column gap-md-2 align-items-md-center lh-1">
-                                  <!--rating-->
-                                  <span>
-                                    @for ($i = 1; $i <= 5; $i++)
-                                      @if($i <= $evaluation->note)
-                                        <!-- Star filled (active) -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
-                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                                        </svg>
-                                      @else
-                                        <!-- Star empty (inactive) -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star text-muted" viewBox="0 0 16 16">
-                                          <path d="M2.866 14.85c-.078.444.36.791.746.592L8 13.187l4.389 2.255c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.159-.888-.282-.95l-4.898-.696L8 0.792 5.816 5.119l-4.898.696c-.441.062-.612.636-.282.95l3.522 3.356-.83 4.73z"></path>
-                                        </svg>
-                                      @endif
-                                    @endfor
-                                  </span>
-                                  <!--date-->
-                                  <span>
-                                    <small class="fw-medium">{{ $evaluation->created_at->format('F j, Y') }}</small>
-                                  </span>
+                            <div class="py-4 d-flex flex-column gap-3 border-bottom">
+                                <div class="d-flex flex-row justify-content-between align-items-md-center">
+                                    <div class="d-flex flex-row gap-3 align-items-center">
+                                        <div>
+                                            <img src="{{ asset('path/to/avatar/'.$evaluation->user->avatar) }}" alt="avatar" class="avatar avatar-lg rounded-circle">
+                                        </div>
+                                        <div>
+                                            <h4 class="mb-1">{{ $evaluation->user->name }}</h4>
+                                            <div class="d-flex flex-md-row flex-column gap-md-2 align-items-md-center lh-1">
+                                                <span>
+                                                    @for ($i = 1; $i <= 5; $i++)
+                                                        @if($i <= $evaluation->note)
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                                            </svg>
+                                                        @else
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star text-muted" viewBox="0 0 16 16">
+                                                                <path d="M2.866 14.85c-.078.444.36.791.746.592L8 13.187l4.389 2.255c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.159-.888-.282-.95l-4.898-.696L8 0.792 5.816 5.119l-4.898.696c-.441.062-.612.636-.282.95l3.522 3.356-.83 4.73z"></path>
+                                                            </svg>
+                                                        @endif
+                                                    @endfor
+                                                </span>
+                                                <span>
+                                                    <small class="fw-medium">{{ $evaluation->created_at->format('F j, Y') }}</small>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <button class="btn btn-sm btn-primary" wire:click="editEvaluation({{ $evaluation->id }})">
+                                            Modifier
+                                        </button>
+
+                                        <button class="btn btn-sm btn-danger" wire:click="deleteEvaluation({{ $evaluation->id }})">
+                                            Supprimer
+                                        </button>
+                                    </div>
                                 </div>
-                              </div>
+
+                                <div>
+                                    <p class="mb-0">{{ $evaluation->commentaire }}</p>
+                                </div>
                             </div>
-                          </div>
+                        @endforeach
 
-                          <!--comment-->
-                          <div>
-                            <p class="mb-0">
-                              {{ $evaluation->commentaire }}
-                            </p>
-                          </div>
-                        </div>
-                      @endforeach
+                        <!-- Formulaire de modification d'évaluation -->
+                        @if($editingEvaluationId == $evaluation->id)
+                            <div class="mt-4">
+                                <form wire:submit.prevent="updateEvaluation">
+                                    <div class="mb-3">
+                                        <label for="rating" class="form-label">Note</label>
+                                        <input type="number" id="rating" class="form-control" wire:model="rating" min="1" max="5" required>
+                                        @error('rating') <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
 
+                                    <div class="mb-3">
+                                        <label for="comment" class="form-label">Commentaire</label>
+                                        <textarea id="comment" class="form-control" wire:model="comment" rows="4" required></textarea>
+                                        @error('comment') <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
 
+                                    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                                    <button type="button" class="btn btn-secondary" wire:click="resetForm()">Annuler</button>
+                                </form>
+                            </div>
+                        @endif
 
+                        <!-- Formulaire de création d'évaluation -->
+                        @if($editingEvaluationId == null)
+                            <div class="mt-4">
+                                <h5>Évaluez le prestataire</h5>
+                                <form wire:submit.prevent="submitRating">
+                                    <div class="form-group">
+                                        <label for="rating">Votre note</label>
+                                        <div class="rating d-flex gap-1">
+                                            <input type="radio" id="star5" wire:model="rating" value="5" /><label for="star5" title="5 étoiles">&#9733;</label>
+                                            <input type="radio" id="star4" wire:model="rating" value="4" /><label for="star4" title="4 étoiles">&#9733;</label>
+                                            <input type="radio" id="star3" wire:model="rating" value="3" /><label for="star3" title="3 étoiles">&#9733;</label>
+                                            <input type="radio" id="star2" wire:model="rating" value="2" /><label for="star2" title="2 étoiles">&#9733;</label>
+                                            <input type="radio" id="star1" wire:model="rating" value="1" /><label for="star1" title="1 étoile">&#9733;</label>
+                                        </div>
+                                        @error('rating') <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
 
-                        <div class="mt-4">
-                            <h5>Évaluez le prestataire</h5>
-                            <form wire:submit.prevent="submitRating">
-                              <div class="form-group">
-                                <label for="rating">Votre note</label>
-                                <div class="rating d-flex gap-1">
-                                  <input type="radio" id="star5" wire:model="rating" value="5" /><label for="star5" title="5 étoiles">&#9733;</label>
-                                  <input type="radio" id="star4" wire:model="rating" value="4" /><label for="star4" title="4 étoiles">&#9733;</label>
-                                  <input type="radio" id="star3" wire:model="rating" value="3" /><label for="star3" title="3 étoiles">&#9733;</label>
-                                  <input type="radio" id="star2" wire:model="rating" value="2" /><label for="star2" title="2 étoiles">&#9733;</label>
-                                  <input type="radio" id="star1" wire:model="rating" value="1" /><label for="star1" title="1 étoile">&#9733;</label>
-                                </div>
-                                @error('rating') <span class="text-danger">{{ $message }}</span> @enderror
-                              </div>
+                                    <div class="form-group mt-3">
+                                        <label for="comment">Votre commentaire</label>
+                                        <textarea class="form-control" wire:model="comment" id="comment" rows="3"></textarea>
+                                        @error('comment') <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
 
-                              <div class="form-group mt-3">
-                                <label for="comment">Votre commentaire</label>
-                                <textarea class="form-control" wire:model="comment" id="comment" rows="3"></textarea>
-                                @error('comment') <span class="text-danger">{{ $message }}</span> @enderror
-                              </div>
+                                    <button type="submit" class="btn btn-primary mt-3">Soumettre</button>
+                                </form>
+                            </div>
+                        @endif
+                    </div>
 
-                              <button type="submit" class="btn btn-primary mt-3">Soumettre</button>
-                            </form>
-                          </div>
-
-
-                      </div>
                     </div>
                   </div>
                 </div>
