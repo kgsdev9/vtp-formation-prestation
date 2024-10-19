@@ -184,57 +184,31 @@
                                 </div>
                             </div>
                         @endforeach
-
-                        <!-- Formulaire de modification d'évaluation -->
-                        @if($editingEvaluationId == $evaluation->id)
-                            <div class="mt-4">
-                                <form wire:submit.prevent="updateEvaluation">
-                                    <div class="mb-3">
-                                        <label for="rating" class="form-label">Note</label>
-                                        <input type="number" id="rating" class="form-control" wire:model="rating" min="1" max="5" required>
-                                        @error('rating') <span class="text-danger">{{ $message }}</span> @enderror
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="comment" class="form-label">Commentaire</label>
-                                        <textarea id="comment" class="form-control" wire:model="comment" rows="4" required></textarea>
-                                        @error('comment') <span class="text-danger">{{ $message }}</span> @enderror
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary">Mettre à jour</button>
-                                    <button type="button" class="btn btn-secondary" wire:click="resetForm()">Annuler</button>
-                                </form>
-                            </div>
-                        @endif
-
-                        <!-- Formulaire de création d'évaluation -->
-                        @if($editingEvaluationId == null)
-                            <div class="mt-4">
-                                <h5>Évaluez le prestataire</h5>
-                                <form wire:submit.prevent="submitRating">
-                                    <div class="form-group">
-                                        <label for="rating">Votre note</label>
-                                        <div class="rating d-flex gap-1">
-                                            <input type="radio" id="star5" wire:model="rating" value="5" /><label for="star5" title="5 étoiles">&#9733;</label>
-                                            <input type="radio" id="star4" wire:model="rating" value="4" /><label for="star4" title="4 étoiles">&#9733;</label>
-                                            <input type="radio" id="star3" wire:model="rating" value="3" /><label for="star3" title="3 étoiles">&#9733;</label>
-                                            <input type="radio" id="star2" wire:model="rating" value="2" /><label for="star2" title="2 étoiles">&#9733;</label>
-                                            <input type="radio" id="star1" wire:model="rating" value="1" /><label for="star1" title="1 étoile">&#9733;</label>
-                                        </div>
-                                        @error('rating') <span class="text-danger">{{ $message }}</span> @enderror
-                                    </div>
-
-                                    <div class="form-group mt-3">
-                                        <label for="comment">Votre commentaire</label>
-                                        <textarea class="form-control" wire:model="comment" id="comment" rows="3"></textarea>
-                                        @error('comment') <span class="text-danger">{{ $message }}</span> @enderror
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary mt-3">Soumettre</button>
-                                </form>
-                            </div>
-                        @endif
                     </div>
+
+                    <!-- Formulaire de modification d'évaluation (en dehors de la boucle) -->
+                    @if($editingEvaluationId)
+                        <div class="mt-4">
+                            <h5>Modifier l'évaluation</h5>
+                            <form wire:submit.prevent="updateEvaluation">
+                                <div class="mb-3">
+                                    <label for="rating" class="form-label">Note</label>
+                                    <input type="number" id="rating" class="form-control" wire:model="rating" min="1" max="5" required>
+                                    @error('rating') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="comment" class="form-label">Commentaire</label>
+                                    <textarea id="comment" class="form-control" wire:model="comment" rows="4" required></textarea>
+                                    @error('comment') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                                <button type="button" class="btn btn-secondary" wire:click="resetForm()">Annuler</button>
+                            </form>
+                        </div>
+                    @endif
+
 
                     </div>
                   </div>

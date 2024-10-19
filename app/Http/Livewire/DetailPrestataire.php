@@ -92,7 +92,6 @@ class DetailPrestataire extends Component
     public function editEvaluation($evaluationId)
     {
         $evaluation = NotePrestataire::find($evaluationId);
-
         if ($evaluation) {
             $this->editingEvaluationId = $evaluationId;
             $this->comment = $evaluation->commentaire;
@@ -102,7 +101,7 @@ class DetailPrestataire extends Component
 
     public function resetForm()
     {
-      
+
         $this->rating = null;
         $this->comment = null;
         $this->editingEvaluationId = null;
