@@ -25,7 +25,7 @@ class DashboardController extends Controller
     public function index()
     {
         return view('profiledashboard.base.base', [
-            'allCourseForTeacher' => $this->courseService->teacherCourse()
+            
         ]);
     }
 

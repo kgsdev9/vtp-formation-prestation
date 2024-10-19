@@ -32,12 +32,12 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('courses.index')}}"><i
+                        <a class="nav-link" href="{{route('skills.index')}}"><i
                                 class="fe fe-book nav-icon"></i>Mes Skills</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('courses.index')}}"><i
+                        <a class="nav-link" href="{{route('skills.index')}}"><i
                                 class="fe fe-book nav-icon"></i>Mes modifier mon profile</a>
                     </li>
 
