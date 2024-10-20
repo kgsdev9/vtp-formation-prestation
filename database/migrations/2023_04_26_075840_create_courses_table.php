@@ -17,18 +17,21 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description');
             $table->integer('prix');
-            $table->string('url_video');
+            $table->string('url_video')->nullable();
             $table->string('duration');
-            $table->string('typecours');
             $table->string('image');
+            $table->enum('exercicescours', ['oui', 'non']);
+            $table->enum('supportcourrs', ['oui', 'non']);
             $table->boolean('popular')->default('0');
             $table->boolean('published')->default('0');
             $table->unsignedBigInteger('level_id');
             $table->unsignedBigInteger('entreprise_id');
+            $table->unsignedBigInteger('typecourse_id');
             $table->unsignedBigInteger('category_id');
             $table->foreign('level_id')->references('id')->on('levels');
             $table->foreign('entreprise_id')->references('id')->on('entreprises');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('typecourse_id')->references('id')->on('type_courses');
             $table->timestamps();
         });
     }

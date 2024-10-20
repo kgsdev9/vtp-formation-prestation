@@ -15,6 +15,7 @@ class CreateTypeCoursesTable extends Migration
     {
         Schema::create('type_courses', function (Blueprint $table) {
             $table->id();
+            $table->string('libelletypecourse');
             $table->timestamps();
         });
     }

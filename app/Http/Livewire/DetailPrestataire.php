@@ -32,22 +32,28 @@ class DetailPrestataire extends Component
 
     public function submitRating()
     {
-        // Validation des données
         $this->validate();
 
-        // Enregistrement dans la base de données
-        NotePrestataire::create([
-            'user_id' => Auth::user()->id,
-            'note' => $this->rating,
-            'prestataire_id'=> $this->prestataireId,
-            'commentaire' => $this->comment,
-        ]);
+        if(Auth::check())
+        {
+            // Enregistrement dans la base de données
+            NotePrestataire::create([
+                'user_id' => Auth::user()->id,
+                'note' => $this->rating,
+                'prestataire_id'=> $this->prestataireId,
+                'commentaire' => $this->comment,
+            ]);
 
-        // Réinitialisation du formulaire
-        $this->reset(['rating', 'comment']);
+            // Réinitialisation du formulaire
+            $this->reset(['rating', 'comment']);
 
-        // Message de succès
-        session()->flash('message', 'Merci pour votre évaluation !');
+            // Message de succès
+            session()->flash('message', 'Merci pour votre évaluation !');
+        } else {
+            return redirect()->route('auth.login');
+        }
+
+
     }
 
     public function updateEvaluation()

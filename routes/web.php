@@ -24,6 +24,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\AuthSocialController;
 use App\Http\Controllers\PrestationController;
 use App\Http\Controllers\SkillController;
+use App\Http\Livewire\CourseComponent;
 use App\Http\Livewire\DetailPrestataire;
 use App\Http\Livewire\PrestationComponent;
 use App\Http\Middleware\AdminMddleware;
@@ -64,6 +65,7 @@ Route::get('/orders/user/liste', [HomeController::class, 'ordersListe'])->name('
 Route::get('/orders/{id}', [HomeController::class, 'detailCommande'])->name('orders.detail');
 Route::get('/prestation', [PrestationController::class, 'index'])->name('prestation.index');
 Route::get('/skills', [SkillController::class, 'index'])->name('skills.index');
+Route::get('/mesformations', CourseComponent::class)->name('formation.index')->middleware('auth');
 Route::get('/sucess/creation', function() {
     return view('actions.sucessTeacher');
 });
