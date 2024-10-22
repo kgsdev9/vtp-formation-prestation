@@ -12,16 +12,34 @@ class Prestataire extends Model
     protected $fillable = [
         'nom_prestataire',
         'prenom_prestataire',
-        'type_prestation',
         'adresse',
         'ville',
+        'typepresatation_id',
         'pays',
         'telephone',
         'email',
         'site_web',
         'description',
         'photo',
-        'identifiant'
+        'identifiant',
+        'active_at'
     ];
+
+    public function typeprestation() {
+        return $this->belongsTo(TypePrestation::class, 'typepresatation_id');
+    }
+
+    public function notePrestations() {
+        return $this->hasMany(NotePrestataire::class);
+    }
+
+    public function getAverageRatingAttribute()
+    {
+        // Calculer la moyenne des notes. Si aucune note n'est trouvée, retourner 0
+        return $this->notePrestations()->avg('note') ?? 0;
+    }
+
+
+    
 
 }

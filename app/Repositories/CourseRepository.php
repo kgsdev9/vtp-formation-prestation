@@ -25,10 +25,10 @@ class CourseRepository  {
 
 
     public function teacherCourse() {
-        return $this->course->where('user_id', Auth::user()->id)->get();
+        return $this->course->where('entreprise_id', Auth::user()->id)->get();
     }
 
-
+    
     public function randomCourse() {
         return $this->course->inRandomOrder()->get();
     }

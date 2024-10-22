@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LevelSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(SpecialiteSeeder::class);
+        $this->call(TypePrestationSeeder::class);
             // \App\Models\User::factory(50)->create();
 
         // \App\Models\User::factory()->create([

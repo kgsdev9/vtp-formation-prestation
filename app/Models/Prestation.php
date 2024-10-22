@@ -11,14 +11,11 @@ class Prestation extends Model
 
     protected $fillable = [
         'title',
-        'slug',
+        'description',
         'prix',
-        'categorieprestation_id',
-        'duree_estimee',
         'is_published',
-        'date_debut',
-        'date_fin',
+        'prestaire_id',
+        'duree_estimee'
     ];
-
 
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAbonnementsTable extends Migration
+class CreatePerfomancePrestatairesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateAbonnementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('abonnements', function (Blueprint $table) {
+        Schema::create('perfomance_prestataires', function (Blueprint $table) {
             $table->id();
-            $table->string('libelleabonnement');
-            $table->integer('prix');
-            $table->text('commentaire');
+            $table->string('libelleperfomance');
+            $table->foreignId('prestataire_id')->constrained('prestataires')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateAbonnementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('abonnements');
+        Schema::dropIfExists('perfomance_prestataires');
     }
 }

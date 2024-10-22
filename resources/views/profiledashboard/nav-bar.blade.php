@@ -22,39 +22,30 @@
 
                     @can(['is_prestataire'])
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('courses.create')}}"><i
-                                class="fe fe-book nav-icon"></i>Nouvelle  Prestation </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('courses.index')}}"><i
+                        <a class="nav-link" href="{{route('prestation.index')}}"><i
                                 class="fe fe-book nav-icon"></i>Mes Prestations </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('courses.index')}}"><i
+                        <a class="nav-link" href="{{route('skills.index')}}"><i
                                 class="fe fe-book nav-icon"></i>Mes Skills</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('courses.index')}}"><i
+                        <a class="nav-link" href="#"><i
                                 class="fe fe-book nav-icon"></i>Mes modifier mon profile</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('courses.index')}}"><i
+                        <a class="nav-link" href="#"><i
                                 class="fe fe-book nav-icon"></i>Mes Factures</a>
                     </li>
                     @endcan
 
                     @can(['is_entreprise'])
+                 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('courses.create')}}"><i
-                                class="fe fe-book nav-icon"></i>Nouvelle Formation  </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('courses.index')}}"><i
+                        <a class="nav-link" href="{{route('formation.index')}}"><i
                                 class="fe fe-book nav-icon"></i>Gestion Formations </a>
                     </li>
                     @endcan

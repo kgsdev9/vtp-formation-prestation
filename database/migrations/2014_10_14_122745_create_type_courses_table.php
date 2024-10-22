@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAbonnementsTable extends Migration
+class CreateTypeCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateAbonnementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('abonnements', function (Blueprint $table) {
+        Schema::create('type_courses', function (Blueprint $table) {
             $table->id();
-            $table->string('libelleabonnement');
-            $table->integer('prix');
-            $table->text('commentaire');
+            $table->string('libelletypecourse');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateAbonnementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('abonnements');
+        Schema::dropIfExists('type_courses');
     }
 }

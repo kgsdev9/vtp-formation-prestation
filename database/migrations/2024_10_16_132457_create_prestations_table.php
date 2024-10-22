@@ -19,9 +19,9 @@ class CreatePrestationsTable extends Migration
             $table->text('description')->nullable();
             $table->decimal('prix', 10, 2);
             $table->boolean('is_published')->default('0');
-            $table->unsignedInteger('categorieprestation_id')->nullable();
+            $table->unsignedBigInteger('prestaire_id')->nullable();
             $table->integer('duree_estimee')->nullable();
-            $table->foreign('categorieprestation_id')->references('id')->on('prestation_categories');
+            $table->foreign('prestaire_id')->references('id')->on('prestataires');
             $table->timestamps();
         });
     }

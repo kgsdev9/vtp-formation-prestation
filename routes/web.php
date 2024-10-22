@@ -22,6 +22,11 @@ use App\Http\Controllers\Admin\GestionFormateurController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\AuthSocialController;
+use App\Http\Controllers\PrestationController;
+use App\Http\Controllers\SkillController;
+use App\Http\Livewire\CourseComponent;
+use App\Http\Livewire\DetailPrestataire;
+use App\Http\Livewire\PrestationComponent;
 use App\Http\Middleware\AdminMddleware;
 
 /*
@@ -41,7 +46,7 @@ Route::get('/annuaire-des-categories', [HomeController::class, 'homeCategory'])-
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/annuaire-des-formations', [HomeController::class, 'annuaireFormation'])->name('formation.annuaire');
 Route::get('/annuaire-des-formateurs', [HomeController::class, 'annuaireFormateur'])->name('formateur.annuaire');
-Route::get('/detail/profile/prestataire/{id}', [HomeController::class, 'detailPrestataire'])->name('detail.prestataire');
+Route::get('/detail/profile/prestataire/{id}', DetailPrestataire::class)->name('detail.prestataire');
 Route::get('/sucess/{name}', [ActionController::class, 'registerSuccess'])->name('register.sucess');
 Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
 Route::post('/post/user', [RegisterController::class, 'store'])->name('register');
@@ -58,7 +63,9 @@ Route::get('/course/{slug}', [HomeController::class, 'detailCourse'])->name('det
 Route::get('/processinPayment', [PaymentController::class , 'createNewPayment'])->name('payment.form');
 Route::get('/orders/user/liste', [HomeController::class, 'ordersListe'])->name('orders.users.liste');
 Route::get('/orders/{id}', [HomeController::class, 'detailCommande'])->name('orders.detail');
-
+Route::get('/prestation', [PrestationController::class, 'index'])->name('prestation.index');
+Route::get('/skills', [SkillController::class, 'index'])->name('skills.index');
+Route::get('/mesformations', CourseComponent::class)->name('formation.index')->middleware('auth');
 Route::get('/sucess/creation', function() {
     return view('actions.sucessTeacher');
 });

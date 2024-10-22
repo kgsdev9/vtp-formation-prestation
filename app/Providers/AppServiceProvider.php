@@ -27,9 +27,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Gate::define('is_formateur', function(User $user) {
+        Gate::define('is_entreprise', function(User $user) {
 
-            return $user->role->name == "formateur";
+            return $user->role->name == "entreprise";
          });
 
          Gate::define('is_user', function(User $user) {

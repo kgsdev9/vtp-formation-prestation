@@ -17,8 +17,9 @@ class CreatePrestatairesTable extends Migration
             $table->id();
             $table->string('nom_prestataire');
             $table->string('prenom_prestataire');
-            $table->string('identifiant');
-            $table->string('type_prestation');
+            $table->string('identifiant')->nullable();
+            $table->unsignedBigInteger('typepresatation_id');
+            $table->foreign('typepresatation_id')->references('id')->on('type_prestations');
             $table->string('adresse');
             $table->string('ville');
             $table->string('pays');

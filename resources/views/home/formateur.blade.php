@@ -146,7 +146,7 @@
 
                             <div class="d-flex align-items-center justify-content-between fs-6">
                               <div>
-                                <span>@ Adresse</span>
+                                <span>Adresse</span>
                                 <div class="vr mx-2 text-gray-200"></div>
                                 <span>{{$vallFormateurs->adresse}}</span>
                               </div>
@@ -155,8 +155,8 @@
                                   <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
                                 </svg>
 
-                                <span class="fw-bold text-dark">5.0</span>
-                                <span>(12 Reviews)</span>
+                                <span class="fw-bold text-dark">{{ number_format($vallFormateurs->average_rating, 2) }}</span>
+                                <span> ({{count($vallFormateurs->notePrestations)}})</span>
                               </div>
                             </div>
                           </div>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Entreprise;
 use App\Models\Prestataire;
 use App\Models\Role;
+use App\Models\TypePrestation;
 use Livewire\Component;
 use App\Notifications\AccountConfirmation;
 use Illuminate\Support\Str;
@@ -18,6 +20,7 @@ class RegisterComponent extends Component
     public $accountType = null; // Type de compte sélectionné
     public $company_name, $name, $siren, $numero_tva, $type_entreprise, $adresse, $ville, $code_postal, $pays, $telephone, $email, $site_web, $description, $logo, $nombre_employes, $chiffre_affaires, $password, $password_confirmation;
     public $isSubmitting = false;
+    public $typeprestation_id;
 
     public $nom_prestataire, $prenom_prestataire, $type_prestation, $photo ,$identifiant;
     // Validation conditionnelle en fonction des étapes et types de comptes
@@ -80,8 +83,10 @@ class RegisterComponent extends Component
     {
 
         $this->isSubmitting = true;
-        if ($this->accountType === 'entreprise') {
-            $this->validate([
+        if ($this->accountType === 'entreprise')
+        {
+
+           $data=  $this->validate([
                 'company_name' => 'required|string|max:255',
                 'siren' => 'required|string|max:255',
                 'numero_tva' => 'nullable|string|max:255',
@@ -98,12 +103,45 @@ class RegisterComponent extends Component
                 'nombre_employes' => 'required|integer',
                 'chiffre_affaires' => 'required|numeric',
             ]);
+
+            $user = User::create([
+                'name' => $this->company_name,
+                'email' => $this->email,
+                'password' => Hash::make(12345),
+                'role_id' => 5,
+            ]);
+
+            $prestation = Entreprise::create([
+                'nom_entreprise' => $this->company_name,
+                'siren' => $this->siren,
+                'numero_tva' => $this->numero_tva,
+                'type_entreprise' => $this->type_entreprise,
+                'adresse' => $this->adresse,
+                'ville' =>  $this->ville,
+                'code_postal' => $this->code_postal,
+                'pays' => $this->pays,
+                'telephone' => $this->telephone,
+                'email' => $this->email,
+                'site_web' => $this->site_web,
+                'description'=> $this->description,
+                'nombre_employes'=> $this->nombre_employes,
+                'chiffre_affaires'=> $this->chiffre_affaires,
+                'photo' => $this->photo ? $this->photo->store('prestations_photos', 'public') : null,  // Gestion de la photo
+            ]);
+
+            $token = Str::random(60);
+            // Envoyer la notification avec le lien de confirmation
+            $user->notify(new AccountConfirmation($token));
+
+            return redirect()->route('confirmated.compte');
+
         } elseif ($this->accountType === 'prestation') {
+
 
             $data =$this->validate([
                 'nom_prestataire' => 'required|string',
                 'prenom_prestataire' => 'required|string',
-                'type_prestation' => 'required|string',
+                'typeprestation_id' => 'required',
                 'email' => 'required|email',
                 'adresse' => 'required|string',
                 'ville' => 'required|string',
@@ -111,7 +149,6 @@ class RegisterComponent extends Component
                 'telephone' => 'required|string',
                 'description' => 'required|string',
                 'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-
             ]);
 
             $user = User::create([
@@ -124,7 +161,7 @@ class RegisterComponent extends Component
             $prestation = Prestataire::create([
                 'nom_prestataire' => $this->nom_prestataire,
                 'prenom_prestataire' => $this->prenom_prestataire,
-                'type_prestation' => $this->type_prestation,
+                'typepresatation_id' => $this->typeprestation_id,
                 'adresse' => $this->adresse,
                 'ville' => $this->ville,
                 'pays' =>  $this->pays,
@@ -144,11 +181,10 @@ class RegisterComponent extends Component
 
         } elseif ($this->accountType === 'particulier') {
 
-
             $this->validate([
                 'name' => 'required|string|max:255',
-                'email' => 'required|email|max:255',
-                'password' => 'required|string|max:1000',
+                'email' => 'required|email|max:255|unique:users,email',
+                'password' => 'required|string|min:8',
             ]);
 
             // dd( $this->name, $this->email, $this->password);
@@ -215,11 +251,17 @@ class RegisterComponent extends Component
             $this->step--;
         }
     }
+    public function updatedTypePrestation($value)
+    {
+        $this->emit('typePrestationUpdated');
+    }
+
 
 
     public function render()
     {
         $listeroles = Role::all();
-        return view('livewire.register-component', compact('listeroles'));
+        $listetypeprestations = TypePrestation::all();
+        return view('livewire.register-component', compact('listeroles' , 'listetypeprestations'));
     }
 }
