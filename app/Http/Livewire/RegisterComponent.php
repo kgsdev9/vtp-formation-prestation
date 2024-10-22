@@ -96,7 +96,7 @@ class RegisterComponent extends Component
                 'code_postal' => 'required|string|max:255',
                 'pays' => 'required|string|max:255',
                 'telephone' => 'required|string|max:15',
-                'email' => 'required|email|max:255',
+                'email' => 'required|email|max:255|unique:users,email',
                 'site_web' => 'nullable|string|max:255',
                 'description' => 'required|string|max:1000',
                 'logo' => 'nullable|image|max:1024',
@@ -142,7 +142,7 @@ class RegisterComponent extends Component
                 'nom_prestataire' => 'required|string',
                 'prenom_prestataire' => 'required|string',
                 'typeprestation_id' => 'required',
-                'email' => 'required|email',
+                'email' => 'required|email|max:255|unique:users,email',
                 'adresse' => 'required|string',
                 'ville' => 'required|string',
                 'pays' => 'required|string',
@@ -202,9 +202,7 @@ class RegisterComponent extends Component
             $user->notify(new AccountConfirmation($token));
 
             return redirect()->route('confirmated.compte');
-
         }
-
     }
 
 

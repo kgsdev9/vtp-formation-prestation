@@ -25,10 +25,14 @@
                                         <div class="d-flex justify-content-between align-items-center p-4">
                                             <div class="d-flex">
                                                 <a wire:click="selectAccountType('entreprise')" style="cursor: pointer;">
-                                                    <img src="../assets/images/path/path-bootstrap.svg" alt="entreprise" class="avatar-md">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="none" viewBox="0 0 64 64" class="avatar-md">
+                                                        <rect width="48" height="48" x="8" y="8" fill="#D9EAF7" rx="4"/>
+                                                        <path fill="#4A90E2" d="M24 20h16v4H24v-4zm0 8h16v4H24v-4zm-6 8h4v12h-4V36zm6 0h4v12h-4V36zm6 0h4v12h-4V36zm6 0h4v12h-4V36zm6 0h4v12h-4V36zm0-20h6v12h-6V16z"/>
+                                                      </svg>
+
                                                 </a>
                                                 <div class="ms-3">
-                                                    <h4 class="mb-1">Entreprise</h4>
+                                                    <h4 class="mb-1">Compte Entreprise</h4>
                                                     <p class="mb-0 fs-6">Ajouter les informations de votre entreprise.</p>
                                                 </div>
                                             </div>
@@ -42,10 +46,13 @@
                                         <div class="d-flex justify-content-between align-items-center p-4">
                                             <div class="d-flex">
                                                 <a wire:click="selectAccountType('prestation')" style="cursor: pointer;">
-                                                    <img src="../assets/images/path/path-bootstrap.svg" alt="prestation" class="avatar-md">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="none" viewBox="0 0 64 64" class="avatar-md">
+                                                        <rect width="48" height="48" x="8" y="8" fill="#FFE5D9" rx="4"/>
+                                                        <path fill="#F76C6C" d="M29.6 18.4l3 3L25.4 28l-3-3 7.2-6.6zm3.2 3.2l6.6-7.2 3 3-7.2 6.6-2.4-2.4zm-8 8l-8 8 3 3 8-8-3-3zm6.4 6.4l8-8 3 3-8 8-3-3zm-11.2 11.2l-3-3 6-6 3 3-6 6zm20-20l6-6 3 3-6 6-3-3z"/>
+                                                      </svg>
                                                 </a>
                                                 <div class="ms-3">
-                                                    <h4 class="mb-1">Prestation</h4>
+                                                    <h4 class="mb-1">Compte Prestation</h4>
                                                     <p class="mb-0 fs-6">Ajouter les informations de votre prestation.</p>
                                                 </div>
                                             </div>
@@ -59,10 +66,14 @@
                                         <div class="d-flex justify-content-between align-items-center p-4">
                                             <div class="d-flex">
                                                 <a wire:click="selectAccountType('particulier')" style="cursor: pointer;">
-                                                    <img src="../assets/images/path/path-bootstrap.svg" alt="particulier" class="avatar-md">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="none" viewBox="0 0 64 64" class="avatar-md">
+                                                        <rect width="48" height="48" x="8" y="8" fill="#E6F4F1" rx="4"/>
+                                                        <path fill="#2EC4B6" d="M32 16a8 8 0 100 16 8 8 0 000-16zm0 12a4 4 0 110-8 4 4 0 010 8zm0 4c-6.63 0-12 4.92-12 11v2h24v-2c0-6.08-5.37-11-12-11zm-8 11c.32-3.03 3.67-7 8-7s7.68 3.97 8 7H24z"/>
+                                                      </svg>
+
                                                 </a>
                                                 <div class="ms-3">
-                                                    <h4 class="mb-1">Particulier</h4>
+                                                    <h4 class="mb-1">Compte utilisateur</h4>
                                                     <p class="mb-0 fs-6">Renseignez vos informations personnelles.</p>
                                                 </div>
                                             </div>
