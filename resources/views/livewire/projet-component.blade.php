@@ -2,8 +2,6 @@
     <main>
         <section class="pt-5 pb-5">
             <div class="container">
-
-
                 <div class="row mt-0 mt-md-4">
                     @include('profiledashboard.nav-bar')
                     <div class="col-lg-9 col-md-12 col-12">
@@ -17,7 +15,6 @@
                                 {{ Session::get('message') }}
                             </div>
                         @endif
-
                         <!-- Formulaire -->
                         @if ($showForm)
                         <div class="card mb-12">
