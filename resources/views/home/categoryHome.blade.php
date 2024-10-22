@@ -49,7 +49,7 @@
             @foreach ($category as $value )
           <div class="col-xl-3 col-lg-4 col-md-6 col-12">
             <div class="card-hover-svg card card-body d-flex flex-column gap-4">
-             
+
               <div>
                 <h3 class="mb-0">{{$value->name}}</h3>
                 <span class="text-gray-500">
@@ -61,9 +61,11 @@
           </div>
           @endforeach
         </div>
-        {{ $category->links()}}
       </div>
     </section>
+    <div class="d-flex justify-content-center">
+        {{ $category->links() }}
+    </div>
 
   </main>
 
