@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TypePrestation extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'libelletypeprestation'
+    ];
 }
