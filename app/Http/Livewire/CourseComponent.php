@@ -111,9 +111,10 @@ class CourseComponent extends Component
         // $course->typecourse_id =1;
         $course->entreprise_id = Auth::user()->id;
 
-        if ($this->image) {
-            $course->image = $this->image->store('images', 'public');
-        }
+        $image = md5($this->image . microtime()).'.'.$this->image->extension();
+        $this->image->storeAs('formation', $image);
+
+        $course->image = $this->image;
 
         $course->save();
 
