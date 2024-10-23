@@ -1,0 +1,11 @@
+git clone https://<token>@github.com/kgsdev9/vtp-formation-prestation.git
+
+generer un acces token pour cloner via le toen
+
+
+voila le token
+
+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
+
+
+git clone https://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@github.com/kgsdev9/vtp-formation-prestation.git
