@@ -10,10 +10,20 @@ class Course extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','slug', 'category_id', 'level_id', 'user_id', 'image', 'description', 'prix', 'url_video', 'typecours','duration', 'supportcourrs', 'exercicescours'];
+    protected $fillable = ['title','slug', 'category_id', 'level_id', 'user_id', 'image', 'description', 'prix', 'url_video', 'typecours','duration', 'supportcours', 'exercicescours'];
 
     public function level() {
         return $this->belongsTo(Level::class, 'level_id');
+    }
+
+
+    public function sequences() {
+        return $this->hasMany(Episode::class);
+    }
+
+
+    public  function  keyPoints()  {
+        return $this->hasMany(CourseEssentielle::class);
     }
 
     public function formateur()

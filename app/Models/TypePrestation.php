@@ -9,5 +9,11 @@ class TypePrestation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['libelletypeprestation'];
+    protected $fillable = [
+        'libelletypeprestation'
+    ];
+
+
+
+
 }

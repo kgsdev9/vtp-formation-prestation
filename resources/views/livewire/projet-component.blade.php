@@ -2,14 +2,12 @@
     <main>
         <section class="pt-5 pb-5">
             <div class="container">
-
-
                 <div class="row mt-0 mt-md-4">
                     @include('profiledashboard.nav-bar')
                     <div class="col-lg-9 col-md-12 col-12">
 
                         <button wire:click="toggleForm" class="btn btn-primary mb-3">
-                            {{ $showForm ? 'Annuler' : 'Nouvelle Formation' }}
+                            {{ $showForm ? 'Annuler' : 'Nouveau projet' }}
                         </button>
 
                         @if (Session::has('message'))
@@ -17,15 +15,14 @@
                                 {{ Session::get('message') }}
                             </div>
                         @endif
-
                         <!-- Formulaire -->
                         @if ($showForm)
                         <div class="card mb-12">
                             <div class="card-header border-bottom-0">
-                                <h3 class="mb-0">Nouvelle  Formation</h3>
+                                <h3 class="mb-0">Nouveau projet</h3>
                             </div>
                             <div class="card-body">
-                                <form wire:submit.prevent="saveCourse">
+                                <form wire:submit.prevent="savePrestation">
 
                                     <!-- Étape 1 : Informations générales -->
                                     <div class="step" id="step1" style="display: {{ $currentStep === 1 ? 'block' : 'none' }};">
@@ -196,14 +193,14 @@
                             <table class="table mb-0 text-nowrap table-centered table-hover">
                                 <thead class="table-light">
                                     <tr>
-                                        <th scope="col">Prix</th>
+                                        <th scope="col">Titre</th>
+                                        <th scope="col">Lien </th>
                                         <th scope="col">Description</th>
-                                        <th scope="col">STATUS</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($listeformation as $value)
+                                    @foreach ($listeprojet as $value)
                                     <tr>
                                         <td>{{ $value->title }}</td>
 

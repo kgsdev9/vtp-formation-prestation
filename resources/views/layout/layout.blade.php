@@ -52,7 +52,6 @@
             <!-- Collapse -->
             <div class="collapse navbar-collapse" id="navbar-default">
                 <ul class="navbar-nav mt-3 mt-lg-0 mx-xxl-auto">
-                    <li class="nav-item dropdown"><a class="nav-link" href="#" id="navbarBrowse" >Accueil</a></li>
                     <li class="nav-item dropdown"><a class="nav-link" href="{{route('formation.annuaire')}}" >Nos Formations</a></li>
                     <li class="nav-item dropdown"><a class="nav-link" href="{{route('home.categorie')}}" >Nos Catégories</a></li>
                     <li class="nav-item dropdown"><a class="nav-link" href="{{route('formateur.annuaire')}}">Nos Prestataires</a></li>
@@ -63,7 +62,7 @@
     </nav>
     @yield('content')
 
-    <footer class="footer bg-light-stable py-8 mt-2">
+    <footer class="footer bg-dark-stable py-8 mt-2">
     <div class="container">
         <div class="row gy-6 gy-xl-0 pb-8">
         <div class="col-xl-3 col-lg-12 col-md-6 col-12">
@@ -80,39 +79,29 @@
             <span class="text-dark-stable">Ressources</span>
             <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
                 <li>
-                <a href="#!" class="nav-link">About us</a>
+                <a href="#!" class="nav-link">A Propos</a>
                 </li>
                 <li>
-                <a href="#!" class="nav-link">Contact us</a>
+                <a href="#!" class="nav-link">Dévenir Partenaire</a>
                 </li>
                 <li>
-                <a href="#!" class="nav-link">News and Blogs</a>
+                <a href="#!" class="nav-link">Nos Partenaires</a>
                 </li>
-                <li>
-                <a href="#!" class="nav-link">Career</a>
-                </li>
-                <li>
-                <a href="#!" class="nav-link">Investors</a>
-                </li>
+
             </ul>
             </div>
         </div>
         <div class="col-xl-2 col-md-3 col-6">
             <div class="d-flex flex-column gap-3">
-            <span class="text-dark-stable">Community</span>
+            <span class="text-dark-stable">Communauté</span>
             <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
                 <li>
-                <a href="#!" class="nav-link">Help and Support</a>
+                <a href="#!" class="nav-link">Aide et Support</a>
                 </li>
                 <li>
-                <a href="#!" class="nav-link">Affiliate</a>
+                <a href="#!" class="nav-link">Nos Prestataires recommandés</a>
                 </li>
-                <li>
-                <a href="#!" class="nav-link">Blog</a>
-                </li>
-                <li>
-                <a href="#!" class="nav-link">Geeks Business</a>
-                </li>
+
             </ul>
             </div>
         </div>
@@ -139,11 +128,11 @@
                 <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
                 <li>
                     Adresse :
-                    <span class="fw-semibold">+1234 567 890</span>
+                    <span class="fw-semibold">+3357554555545</span>
                 </li>
                 <li>
                     Temps:
-                    <span class="fw-semibold">9AM to 8:PM IST</span>
+                    <span class="fw-semibold">8H à 18:H </span>
                 </li>
                 <li>
                     Email:
@@ -158,6 +147,8 @@
             </div>
         </div>
         </div>
+
+
         <div class="row align-items-center g-0 border-top border-gray-800 pt-3 flex-column gap-1 flex-lg-row gap-lg-0">
         <!-- Desc -->
         <div class="col-lg-6 col-12 text-center text-md-start">

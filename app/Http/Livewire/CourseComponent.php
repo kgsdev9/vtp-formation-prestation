@@ -7,10 +7,14 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Services\CategoryService;
 use App\Services\LevelService;
+use Livewire\WithFileUploads;
 use App\Services\CourseService;
+use Str;
 
 class CourseComponent extends Component
 {
+    use WithFileUploads;
+
     public $showForm = false;
 
     public function toggleForm()
@@ -18,14 +22,14 @@ class CourseComponent extends Component
         $this->showForm = !$this->showForm;
     }
 
-    public $title, $prix, $category_id, $level_id, $description;
+
     public $sequences = [];
     public $keyPoints = [];
     public $currentStep = 1;
     public $categories;
     public $levels;
     public $courses;
-
+    public $title, $prix, $category_id, $level_id, $exercicescours, $supportcours, $url_video, $duration, $image, $description;
     protected $categoryService;
     protected $levelService;
     protected $courseService;
@@ -47,6 +51,19 @@ class CourseComponent extends Component
         $this->levels = $this->levelService->all();
         $this->courses = $this->courseService->all();
     }
+
+    protected $rules = [
+        'title' => 'required|string|max:255',
+        'prix' => 'required|numeric|min:0',
+        'category_id' => 'required|exists:categories,id',
+        'level_id' => 'required|exists:levels,id',
+        'exercicescours' => 'required|string|in:oui,non',
+        'supportcours' => 'required|string|in:oui,non',
+        'url_video' => 'nullable|url',
+        'duration' => 'required|numeric|min:1',
+        'image' => 'nullable|image|max:1024',
+        'description' => 'required|string|min:10',
+    ];
 
     public function nextStep()
     {
@@ -72,6 +89,56 @@ class CourseComponent extends Component
     {
         $this->keyPoints[] = ['point' => ''];
     }
+
+
+    public function saveCourse()
+    {
+        $this->validate();
+
+        // Sauvegarder les données
+        // Exemple : Vous pouvez sauvegarder dans une table "courses" ici.
+        $course = new Course();
+        $course->title = $this->title;
+        $course->slug = Str::slug($this->title);
+        $course->prix = $this->prix;
+        $course->category_id = $this->category_id;
+        $course->level_id = $this->level_id;
+        $course->exercicescours = $this->exercicescours;
+        $course->supportcourrs = $this->supportcours;
+        $course->url_video = $this->url_video;
+        $course->duration = $this->duration;
+        $course->description = $this->description;
+        // $course->typecourse_id =1;
+        $course->entreprise_id = Auth::user()->id;
+
+        if ($this->image) {
+            $course->image = $this->image->store('images', 'public');
+        }
+
+        $course->save();
+
+        // Sauvegarder les séquences et les points clés associés
+        foreach ($this->sequences as $sequence) {
+            $course->sequences()->create($sequence);
+        }
+
+        foreach ($this->keyPoints as $point) {
+            $course->keyPoints()->create($point);
+        }
+
+        // Réinitialiser le formulaire après enregistrement
+        $this->resetForm();
+
+        session()->flash('message', 'Formation enregistrée avec succès.');
+    }
+
+    public function resetForm()
+    {
+        $this->reset(['title', 'prix', 'category_id', 'level_id', 'exercicescours', 'supportcours', 'url_video', 'duration', 'image', 'description', 'sequences', 'keyPoints']);
+        $this->currentStep = 1;
+
+    }
+
 
     public function removeKeyPoint($index)
     {

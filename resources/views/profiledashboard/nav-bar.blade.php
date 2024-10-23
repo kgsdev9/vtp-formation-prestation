@@ -32,6 +32,11 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="{{route('projet.index')}}"><i
+                                class="fe fe-book nav-icon"></i>Mes Projets</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="#"><i
                                 class="fe fe-book nav-icon"></i>Mes modifier mon profile</a>
                     </li>
@@ -43,7 +48,7 @@
                     @endcan
 
                     @can(['is_entreprise'])
-                 
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('formation.index')}}"><i
                                 class="fe fe-book nav-icon"></i>Gestion Formations </a>

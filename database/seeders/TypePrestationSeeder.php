@@ -40,5 +40,6 @@ class TypePrestationSeeder extends Seeder
             ['libelletypeprestation' => 'Consultant IA (Intelligence Artificielle)'],
         ]);
 
+
     }
 }
