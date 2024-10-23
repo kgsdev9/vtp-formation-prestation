@@ -89,7 +89,7 @@
                                         {{ $value->title }}
 									</h6>
 									<p class="card-text mb-0">
-										Publié par {{ $value->formateur->fullname }}
+										Publié par 
 									</p>
 									<div class="card-text text-muted small">
 

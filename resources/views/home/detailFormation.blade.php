@@ -250,7 +250,7 @@
                       </a>
                     </div>
                     <div>
-                      <h3 class="mb-0 text-primary">{{$course->formateur->fullname}}</h3>
+                      <h3 class="mb-0 text-primary">{{$course->formateur->fullname ?? ''}}</h3>
                       <span>Developer and Lead Instructor</span>
                     </div>
                   </div>
