@@ -26,7 +26,7 @@ return new class extends Migration
             $table->boolean('published')->default('0');
             $table->unsignedBigInteger('level_id');
             $table->unsignedBigInteger('entreprise_id');
-            $table->unsignedBigInteger('typecourse_id');
+            $table->unsignedBigInteger('typecourse_id')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->foreign('level_id')->references('id')->on('levels');
             $table->foreign('entreprise_id')->references('id')->on('entreprises');
