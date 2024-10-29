@@ -2,68 +2,98 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Prestataire;
 use App\Models\Project;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Livewire\Component;
+use Illuminate\Support\Facades\Session;
 
 class ProjetComponent extends Component
 {
-
     public $showForm = false;
+    public $title, $slug, $description, $url, $is_published = false;
+    public $projectId;
+
+    protected $rules = [
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'url' => 'nullable|url',
+        'is_published' => 'boolean',
+    ];
 
     public function toggleForm()
     {
         $this->showForm = !$this->showForm;
+        $this->resetForm();
     }
 
-    public $title, $prix, $category_id, $level_id, $description;
-    public $sequences = [];
-    public $keyPoints = [];
-    public $currentStep = 1;
-    public $categories;
-    public $levels;
-    public $courses;
-
-    protected $categoryService;
-    protected $levelService;
-    protected $courseService;
-
-
-  
-
-    public function nextStep()
+    private function resetForm()
     {
-        $this->currentStep++;
+        $this->reset(['title', 'slug', 'description', 'url', 'is_published', 'projectId']);
     }
 
-    public function prevStep()
+    public function updatedTitle($value)
     {
-        $this->currentStep--;
-    }
-    public function addSequence()
-    {
-        $this->sequences[] = ['title' => '', 'duration' => ''];
+        $this->slug = Str::slug($value);
     }
 
-    public function removeSequence($index)
+    public function saveProject()
     {
-        unset($this->sequences[$index]);
-        $this->sequences = array_values($this->sequences); // Re-index array
+
+        $iduser = Auth::user()->id;
+        $prestataire = Prestataire::where('user_id', $iduser)->first();
+
+
+        $this->validate();
+
+        $data = [
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'description' => $this->description,
+            'url' => $this->url,
+            // 'is_published' => $this->is_published,
+            'prestataire_id' => $prestataire->id,
+        ];
+
+
+        if ($this->projectId) {
+            $project = Project::findOrFail($this->projectId);
+            $project->update($data);
+            session()->flash('message', 'Projet mis à jour avec succès.');
+        } else {
+            Project::create($data);
+            session()->flash('message', 'Projet créé avec succès.');
+        }
+
+        $this->resetForm();
+        $this->showForm = false;
+        $this->emit('projectUpdated');
     }
 
-    public function addKeyPoint()
+    public function editProject($id)
     {
-        $this->keyPoints[] = ['point' => ''];
+        $project = Project::findOrFail($id);
+        $this->projectId = $project->id;
+        $this->title = $project->title;
+        $this->slug = $project->slug;
+        $this->description = $project->description;
+        $this->url = $project->url;
+        // $this->is_published = $project->is_published;
+        $this->showForm = true;
     }
 
-    public function removeKeyPoint($index)
+    public function deleteProject($id)
     {
-        unset($this->keyPoints[$index]);
-        $this->keyPoints = array_values($this->keyPoints); // Re-index array
+        $project = Project::findOrFail($id);
+        $project->delete();
+        session()->flash('message', 'Projet supprimé avec succès.');
+        $this->emit('projectDeleted');
     }
 
     public function render()
     {
-        $listeprojet = Project::all();
-        return view('livewire.projet-component', compact('listeprojet'))->extends('layout.layout');
+        $projects = Project::where('prestataire_id', Auth::user()->id)->get();
+        return view('livewire.projet-component', compact('projects'))->extends('layout.layout');
     }
 }

@@ -1,66 +1,66 @@
+@section('title', 'Mes Performances')
+
 <div>
     <main>
         <section class="pt-5 pb-5">
             <div class="container">
+                @include('profiledashboard.base.header')
+
                 <div class="row mt-0 mt-md-4">
                     @include('profiledashboard.nav-bar')
-                    <div class="col-lg-9 col-md-12 col-12">
-
-                        <button wire:click="toggleForm" class="btn btn-primary mb-3">
-                            {{ $showForm ? 'Annuler' : 'Nouvelle Perfomance'}}
-                        </button>
-
-                        @if (Session::has('message'))
-                            <div class="alert alert-success">
-                                {{ Session::get('message') }}
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <div class="card mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h3 class="h4 mb-0">Liste de vos performances</h3>
+                                <button wire:click="toggleForm" class="btn btn-primary mb-3 btn-sm">
+                                    {{ $showForm ? 'Annuler' : 'Nouvelle performance' }}
+                                </button>
                             </div>
-                        @endif
 
-                        <!-- Formulaire -->
-                        @if ($showForm)
-                        <div class="card mb-12">
-                            <div class="card-header border-bottom-0">
-                                <h3 class="mb-0">Nouvelle Skills</h3>
-                            </div>
-                            <div class="card-body">
-                                <form wire:submit.prevent="savePerfomance">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" wire:model="libelleperfomance" id="title" placeholder="Libelle de la prestation">
-                                        <label for="libelleperfomance">Libelel de la prestation</label>
-                                        @error('libelleperfomance') <span class="text-danger">{{ $message }}</span> @enderror
-                                    </div>
-                                    <button type="submit" class="btn btn-success">Enregistrer</button>
-                                </form>
-                            </div>
-                        </div>
-                        @endif
+                            @if (session()->has('message'))
+                                <div class="alert alert-success">{{ session('message') }}</div>
+                            @endif
 
-                        <!-- Table des prestations -->
-                        <div class="table-invoice table-responsive">
-                            <table class="table mb-0 text-nowrap table-centered table-hover">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th scope="col">libelle perfomance</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($listeprestation as $value)
-                                    <tr>
-                                        <td>{{ $value->libelleperfomance }}</td>
+                            @if($showForm)
+                                <div class="card p-3 mt-3 mx-2">
+                                    <h5 class="mb-3">{{ $performanceId ? 'Modifier la performance' : 'Nouvelle Performance' }}</h5>
+                                    <form wire:submit.prevent="savePerformance">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" wire:model="libelleperfomance" id="libelleperfomance" placeholder="Libellé de la performance">
+                                            <label for="libelleperfomance">Libellé</label>
+                                            @error('libelleperfomance') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
 
-                                        <td>
-                                            <button wire:click="deletePrestation({{$value->id}})" class="fe fe-trash"></button>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                                    </form>
+                                </div>
+                            @else
+                                <div class="table-responsive mt-3">
+                                    <table class="table mb-0 table-hover table-centered text-nowrap">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Libellé</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($listePerformances as $performance)
+                                            <tr>
+                                                <td>{{ $performance->libelleperfomance }}</td>
+                                                <td>
+                                                    <button wire:click="editPerformance({{ $performance->id }})" class="btn btn-warning btn-sm">Modifier</button>
+                                                    <button wire:click="deletePerformance({{ $performance->id }})" class="btn btn-danger btn-sm">Supprimer</button>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
 </div>

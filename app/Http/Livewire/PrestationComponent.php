@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Prestataire;
 use App\Models\Prestation;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -9,9 +10,9 @@ use Illuminate\Support\Facades\Session;
 
 class PrestationComponent extends Component
 {
-
     public $showForm = false; // Pour afficher/masquer le formulaire
     public $title, $amount, $description, $duration;
+    public $prestationId;
 
     protected $rules = [
         'title' => 'required|string|max:255',
@@ -22,47 +23,62 @@ class PrestationComponent extends Component
 
     public function toggleForm()
     {
+        $this->resetForm();
         $this->showForm = !$this->showForm;
+    }
+
+    public function resetForm()
+    {
+        $this->reset(['title', 'amount', 'description', 'duration', 'prestationId']);
     }
 
     public function savePrestation()
     {
         $this->validate();
 
-        Prestation::create([
-            'title' => $this->title,
-            'description' =>$this->description,
-            'prix' => $this->amount ,
-            'prestaire_id' => Auth::user()->id,
-            'duree_estimee' =>  $this->duration,
-        ]);
+        $iduser = Auth::user()->id;
+        $prestataire = Prestataire::where('user_id', $iduser)->first();
 
-        $this->reset(['title', 'amount', 'description', 'duration']);
+        Prestation::updateOrCreate(
+            ['id' => $this->prestationId],
+            [
+                'title' => $this->title,
+                'description' => $this->description,
+                'prix' => $this->amount,
+                'prestataire_id' => $prestataire->id,
+                'duree_estimee' => $this->duration,
+            ]
+        );
 
+        $this->resetForm();
         $this->showForm = false;
-
-        Session::flash('message', 'Prestation créée avec succès.');
-
+        session()->flash('message', $this->prestationId ? 'Prestation mise à jour avec succès.' : 'Prestation créée avec succès.');
         $this->emit('prestationAdded');
+    }
+
+    public function editPrestation($id)
+    {
+        $prestation = Prestation::findOrFail($id);
+        $this->prestationId = $prestation->id;
+        $this->title = $prestation->title;
+        $this->amount = $prestation->prix;
+        $this->description = $prestation->description;
+        $this->duration = $prestation->duree_estimee;
+
+        $this->showForm = true;
     }
 
     public function deletePrestation($id)
     {
-        // Trouver la prestation par son ID
         $prestation = Prestation::findOrFail($id);
-
-        // Supprimer la prestation
         $prestation->delete();
-
-        // Ajouter un message flash pour la confirmation de la suppression
         session()->flash('message', 'Prestation supprimée avec succès.');
-
-        // Émettre un événement pour actualiser la liste des prestations
         $this->emit('prestationDeleted');
     }
+
     public function render()
     {
-        $listeprestation  = Prestation::all();
+        $listeprestation = Prestation::all();
         return view('livewire.prestation-component', compact('listeprestation'));
     }
 }

@@ -1,103 +1,97 @@
+@section('title', 'Mes Compétences')
 <div>
     <main>
         <section class="pt-5 pb-5">
             <div class="container">
-
+                @include('profiledashboard.base.header')
 
                 <div class="row mt-0 mt-md-4">
                     @include('profiledashboard.nav-bar')
-                    <div class="col-lg-9 col-md-12 col-12">
-
-                        <button wire:click="toggleForm" class="btn btn-primary mb-3">
-                            {{ $showForm ? 'Annuler' : 'Nouvelle prestation' }}
-                        </button>
-
-                        @if (Session::has('message'))
-                            <div class="alert alert-success">
-                                {{ Session::get('message') }}
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <div class="card mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h3 class="h4 mb-0">Liste de vos prestations</h3>
+                                <button wire:click="toggleForm" class="btn btn-primary mb-3 btn-sm">
+                                    {{ $showForm ? 'Annuler' : 'Nouvelle prestation' }}
+                                </button>
                             </div>
-                        @endif
 
-                        <!-- Formulaire -->
-                        @if ($showForm)
-                        <div class="card mb-12">
-                            <div class="card-header border-bottom-0">
-                                <h3 class="mb-0">Nouvelle prestation</h3>
-                            </div>
-                            <div class="card-body">
-                                <form wire:submit.prevent="savePrestation">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" wire:model="title" id="title" placeholder="Titre de la  prestation">
-                                        <label for="title">Nom complet</label>
-                                        @error('title') <span class="text-danger">{{ $message }}</span> @enderror
-                                    </div>
+                            @if (session()->has('message'))
+                                <div class="alert alert-success">{{ session('message') }}</div>
+                            @endif
 
-                                    <div class="form-floating mb-3">
-                                        <input type="number" class="form-control" wire:model="amount" id="amount" placeholder="Prix">
-                                        <label for="amount">Prix</label>
-                                        @error('amount') <span class="text-danger">{{ $message }}</span> @enderror
-                                    </div>
+                            @if($showForm)
+                                <div class="card p-3 mt-3 mx-2">
+                                    <h5 class="mb-3">{{ $prestationId ? 'Modifier la prestation' : 'Nouvelle prestation' }}</h5>
+                                    <form wire:submit.prevent="savePrestation">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" wire:model="title" id="title" placeholder="Titre de la prestation">
+                                            <label for="title">Nom complet</label>
+                                            @error('title') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
 
-                                    <div class="form-floating mb-3">
-                                        <textarea class="form-control" wire:model="description" id="description" placeholder="Description"></textarea>
-                                        <label for="description">Description</label>
-                                        @error('description') <span class="text-danger">{{ $message }}</span> @enderror
-                                    </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="number" class="form-control" wire:model="amount" id="amount" placeholder="Prix">
+                                            <label for="amount">Prix</label>
+                                            @error('amount') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
 
-                                    <!-- Champ pour la durée -->
-                                    <div class="form-floating mb-3">
-                                        <input type="number" class="form-control" wire:model="duration" id="duration" placeholder="Durée (en heures)">
-                                        <label for="duration">Durée (en heures)</label>
-                                        @error('duration') <span class="text-danger">{{ $message }}</span> @enderror
-                                    </div>
+                                        <div class="form-floating mb-3">
+                                            <textarea class="form-control" wire:model="description" id="description" placeholder="Description"></textarea>
+                                            <label for="description">Description</label>
+                                            @error('description') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
 
-                                    <button type="submit" class="btn btn-success">Enregistrer</button>
-                                </form>
+                                        <div class="form-floating mb-3">
+                                            <input type="number" class="form-control" wire:model="duration" id="duration" placeholder="Durée (en heures)">
+                                            <label for="duration">Durée (en heures)</label>
+                                            @error('duration') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
 
-                            </div>
-                        </div>
-                        @endif
-
-                        <!-- Table des prestations -->
-                        <div class="table-invoice table-responsive">
-                            <table class="table mb-0 text-nowrap table-centered table-hover">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th scope="col">Titre</th>
-                                        <th scope="col">Prix</th>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">STATUS</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($listeprestation as $value)
-                                    <tr>
-                                        <td>{{ $value->title }}</td>
-
-                                        <td>{{ $value->prix }} € - {{ $value->prix * 650 }} FCFA</td>
-                                        <td>{{ $value->description }}</td>
-                                        <td>
-                                            @if ($value->status == 'en attente')
-                                            <span class="badge bg-warning">En cours</span>
-                                            @elseif ($value->status == 'echec')
-                                            <span class="badge bg-danger">Echec</span>
-                                            @elseif ($value->status == 'effectue')
-                                            <span class="badge bg-success">Validée</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <button wire:click="deletePrestation({{$value->id}})" class="fe fe-trash"></button>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                        <button type="submit" class="btn btn-success">{{ $prestationId ? 'Mettre à jour' : 'Enregistrer' }}</button>
+                                    </form>
+                                </div>
+                            @else
+                                <div class="table-responsive mt-3">
+                                    <table class="table mb-0 table-hover table-centered text-nowrap">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Intitulé</th>
+                                                <th>Prix</th>
+                                                <th>Description</th>
+                                                <th>Statut</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($listeprestation as $value)
+                                            <tr>
+                                                <td>{{ $value->title }}</td>
+                                                <td>{{ $value->prix }} € - {{ $value->prix * 650 }} FCFA</td>
+                                                <td>{{ $value->description }}</td>
+                                                <td>
+                                                    @if ($value->status == 'en attente')
+                                                        <span class="badge bg-warning">En cours</span>
+                                                    @elseif ($value->status == 'echec')
+                                                        <span class="badge bg-danger">Echec</span>
+                                                    @elseif ($value->status == 'effectue')
+                                                        <span class="badge bg-success">Validée</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <button wire:click="editPrestation({{ $value->id }})" class="btn btn-sm btn-info">Modifier</button>
+                                                    <button wire:click="deletePrestation({{ $value->id }})" class="btn btn-sm btn-danger">Supprimer</button>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
 </div>

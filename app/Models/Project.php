@@ -13,9 +13,9 @@ class Project extends Model
         'title',
         'slug',
         'description',
-        'lien_projet',
+        'url',
         'prestataire_id',
-        'is_published'
+        // 'is_published'
     ];
 
 }

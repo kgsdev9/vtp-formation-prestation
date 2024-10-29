@@ -19,7 +19,9 @@ class CreatePrestatairesTable extends Migration
             $table->string('prenom_prestataire');
             $table->string('identifiant')->nullable();
             $table->unsignedBigInteger('typepresatation_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('typepresatation_id')->references('id')->on('type_prestations');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('adresse');
             $table->string('ville');
             $table->string('pays');
@@ -29,6 +31,7 @@ class CreatePrestatairesTable extends Migration
             $table->text('description')->nullable();
             $table->string('photo')->nullable();
             $table->timestamps();
+
         });
     }
 

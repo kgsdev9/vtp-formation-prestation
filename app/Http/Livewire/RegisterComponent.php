@@ -169,6 +169,7 @@ class RegisterComponent extends Component
                 'email' => $this->email,
                 'site_web' => $this->site_web,
                 'description' => $this->description,
+                'user_id' => $user->id,
                 'identifiant' => $this->identifiant,
                 'photo' => $this->photo ? $this->photo->store('prestations_photos', 'public') : null,  // Gestion de la photo
             ]);

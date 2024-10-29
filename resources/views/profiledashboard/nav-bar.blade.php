@@ -22,28 +22,32 @@
 
                     @can(['is_prestataire'])
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('prestation.index')}}"><i
-                                class="fe fe-book nav-icon"></i>Mes Prestations </a>
+                        <a class="nav-link" href="{{route('prestation.index')}}">
+                            <i class="fe fe-briefcase nav-icon"></i> Projets
+                            Mes Prestations </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('skills.index')}}"><i
-                                class="fe fe-book nav-icon"></i>Mes Skills</a>
+                        <a class="nav-link" href="{{route('skills.index')}}">
+                            <i class="fe fe-award nav-icon"></i> Compétences
+                             Mes Skills</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('projet.index')}}"><i
-                                class="fe fe-book nav-icon"></i>Mes Projets</a>
+                        <a class="nav-link" href="{{route('projet.index')}}">
+                            <i class="fe fe-folder nav-icon"></i> Projets
+                            Mes Projets</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i
-                                class="fe fe-book nav-icon"></i>Mes modifier mon profile</a>
+                                class="fe fe-book nav-icon"></i>Edition Profile</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i
-                                class="fe fe-book nav-icon"></i>Mes Factures</a>
+                        <a class="nav-link" href="#">
+                            <i class="fe fe-file-text nav-icon"></i> Factures
+                            Mes Factures</a>
                     </li>
                     @endcan
 

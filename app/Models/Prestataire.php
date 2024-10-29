@@ -22,7 +22,8 @@ class Prestataire extends Model
         'description',
         'photo',
         'identifiant',
-        'active_at'
+        'active_at',
+        'user_id'
     ];
 
     public function typeprestation() {
@@ -40,6 +41,6 @@ class Prestataire extends Model
     }
 
 
-    
+
 
 }
