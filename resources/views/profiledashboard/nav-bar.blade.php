@@ -40,7 +40,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i
+                        <a class="nav-link" href="{{route('edition.prestataire.profile')}}"><i
                                 class="fe fe-book nav-icon"></i>Edition Profile</a>
                     </li>
 

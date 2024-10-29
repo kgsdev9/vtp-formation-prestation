@@ -26,6 +26,7 @@ use App\Http\Controllers\PrestationController;
 use App\Http\Controllers\SkillController;
 use App\Http\Livewire\CourseComponent;
 use App\Http\Livewire\DetailPrestataire;
+use App\Http\Livewire\EditionProfilePrestataire;
 use App\Http\Livewire\PrestationComponent;
 use App\Http\Livewire\ProjetComponent;
 use App\Http\Middleware\AdminMddleware;
@@ -120,3 +121,7 @@ Route::get('/confirmated_compte' , [AuthController::class, 'verificationAcount']
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
     ->name('verification.verify')
     ->middleware(['signed', 'throttle:6,1']); // Ajout des middlewares "signed" et "throttle" pour limiter les requêtes
+
+    //nouvelles routes
+
+    Route::get('/editionprofile', EditionProfilePrestataire::class) ->name('edition.prestataire.profile');
