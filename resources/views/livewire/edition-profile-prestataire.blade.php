@@ -1,0 +1,87 @@
+<div class="card-body">
+    <div class="d-lg-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center mb-4 mb-lg-0">
+            <img src="../assets/images/avatar/avatar-3.jpg" id="img-uploaded" class="avatar-xl rounded-circle" alt="avatar">
+            <div class="ms-3">
+                <h4 class="mb-0">Votre photo</h4>
+                <p class="mb-0">PNG ou JPG, pas plus grand que 800px de large et de haut.</p>
+            </div>
+        </div>
+        <div>
+            <a href="#" class="btn btn-outline-secondary btn-sm">Mettre à jour</a>
+            <a href="#" class="btn btn-outline-danger btn-sm">Supprimer</a>
+        </div>
+    </div>
+    <hr class="my-5">
+    <div>
+        <h4 class="mb-0">Détails du prestataire</h4>
+        <p class="mb-4">Modifiez les informations personnelles et l'adresse.</p>
+        <!-- Form -->
+        <form class="row gx-3 needs-validation" novalidate="">
+            <!-- Nom du prestataire -->
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="nom_prestataire">Nom</label>
+                <input type="text" id="nom_prestataire" name="nom_prestataire" class="form-control" placeholder="Nom" required="">
+                <div class="invalid-feedback">Veuillez entrer le nom.</div>
+            </div>
+            <!-- Prénom du prestataire -->
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="prenom_prestataire">Prénom</label>
+                <input type="text" id="prenom_prestataire" name="prenom_prestataire" class="form-control" placeholder="Prénom" required="">
+                <div class="invalid-feedback">Veuillez entrer le prénom.</div>
+            </div>
+            <!-- Adresse -->
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="adresse">Adresse</label>
+                <input type="text" id="adresse" name="adresse" class="form-control" placeholder="Adresse" required="">
+                <div class="invalid-feedback">Veuillez entrer l'adresse.</div>
+            </div>
+            <!-- Ville -->
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="ville">Ville</label>
+                <input type="text" id="ville" name="ville" class="form-control" placeholder="Ville" required="">
+                <div class="invalid-feedback">Veuillez entrer la ville.</div>
+            </div>
+            <!-- Téléphone -->
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="telephone">Téléphone</label>
+                <input type="text" id="telephone" name="telephone" class="form-control" placeholder="Téléphone" required="">
+                <div class="invalid-feedback">Veuillez entrer le numéro de téléphone.</div>
+            </div>
+            <!-- Email -->
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required="">
+                <div class="invalid-feedback">Veuillez entrer un email valide.</div>
+            </div>
+            <!-- Pays -->
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="pays">Pays</label>
+                <input type="text" id="pays" name="pays" class="form-control" placeholder="Pays" required="">
+                <div class="invalid-feedback">Veuillez entrer le pays.</div>
+            </div>
+            <!-- Type de prestation -->
+            <div class="mb-3 col-12 col-md-6">
+                <label class="form-label" for="typepresatation_id">Type de prestation</label>
+                <select id="typepresatation_id" name="typepresatation_id" class="form-select" required="">
+                    <option value="" selected disabled>Choisir le type de prestation</option>
+                    <option value="1">Type 1</option>
+                    <option value="2">Type 2</option>
+                    <option value="3">Type 3</option>
+                    <!-- Ajoutez ici d'autres types de prestations selon votre modèle -->
+                </select>
+                <div class="invalid-feedback">Veuillez choisir un type de prestation.</div>
+            </div>
+            <!-- Description -->
+            <div class="mb-3 col-12">
+                <label class="form-label" for="description">Description</label>
+                <textarea id="description" name="description" class="form-control" placeholder="Description" required=""></textarea>
+                <div class="invalid-feedback">Veuillez entrer une description.</div>
+            </div>
+            <div class="col-12">
+                <!-- Bouton -->
+                <button class="btn btn-primary" type="submit">Mettre à jour le prestataire</button>
+            </div>
+        </form>
+    </div>
+</div>
