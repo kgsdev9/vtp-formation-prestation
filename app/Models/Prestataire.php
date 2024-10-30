@@ -30,6 +30,12 @@ class Prestataire extends Model
         return $this->belongsTo(TypePrestation::class, 'typepresatation_id');
     }
 
+
+    public function projects() {
+        return $this->hasMany(Project::class);
+    }
+
+
     public function notePrestations() {
         return $this->hasMany(NotePrestataire::class);
     }

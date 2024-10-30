@@ -17,7 +17,7 @@
                                         <p class="mb-0">PNG ou JPG, pas plus grand que 800px de large et de haut.</p>
                                     </div>
                                 </div>
-                               
+
                             </div>
                             <hr class="my-5">
                             <div>
@@ -71,11 +71,9 @@
                                     <div class="mb-3 col-12 col-md-6">
                                         <label class="form-label" for="typepresatation_id">Type de prestation</label>
                                         <select id="typepresatation_id" wire:model="typepresatation_id" class="form-select" required="">
-                                            <option value="" selected disabled>Choisir le type de prestation</option>
-                                            <option value="1">Type 1</option>
-                                            <option value="2">Type 2</option>
-                                            <option value="3">Type 3</option>
-                                            <!-- Ajoutez ici d'autres types de prestations selon votre modèle -->
+                                            @foreach ($listetypeprestation as $vlistetypeprestation)
+                                            <option value="{{$vlistetypeprestation->id}}">{{$vlistetypeprestation->libelletypeprestation}}</option>
+                                            @endforeach
                                         </select>
                                         <div class="invalid-feedback">Veuillez choisir un type de prestation.</div>
                                     </div>

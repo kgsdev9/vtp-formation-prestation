@@ -55,7 +55,8 @@ class HomeController extends Controller
         'allCourse' => $this->courseService->all(),
         'randomCourse' => $this->courseService->randomCourse(),
         'category' => $this->categoryService->categoryTakeRandom(),
-        'enVogue' => $this->categoryService->categoryenVogue()
+        'enVogue' => $this->categoryService->categoryenVogue(),
+        'listeprestataire'=> Prestataire::take(10)->get()
         ]);
     }
 

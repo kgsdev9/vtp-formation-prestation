@@ -94,16 +94,7 @@
 
                             </div>
                           </div>
-                          <div>
-                            <span class="badge rounded-pill text-success-emphasis bg-success-subtle border border-success align-items-center">
-                              <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-reply-fill me-1 align-text-top" viewBox="0 0 16 16">
-                                  <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"></path>
-                                </svg>
-                              </span>
-                              Répondeur rapide
-                            </span>
-                          </div>
+
                         </div>
                       </div>
                     </div>
@@ -277,7 +268,7 @@
                     <!--nav tab-->
                     <ul class="nav nav-lb-tab mb-4" id="tab" role="tablist">
                       <li class="nav-item ms-0" role="presentation">
-                        <a class="nav-link active" id="membership-tab" data-bs-toggle="pill" href="#membership" role="tab" aria-controls="membership" aria-selected="true">Note aux utilisateurs</a>
+                        <a class="nav-link active" id="membership-tab" data-bs-toggle="pill" href="#membership" role="tab" aria-controls="membership" aria-selected="true">Mes Projets</a>
                       </li>
                       <li class="nav-item" role="presentation">
                         <a class="nav-link" id="session-tab" data-bs-toggle="pill" href="#session" role="tab" aria-controls="session" aria-selected="false" tabindex="-1">Sessions</a>
@@ -286,54 +277,20 @@
                     <div class="tab-content" id="tabContent">
                       <div class="tab-pane fade active show" id="membership" role="tabpanel" aria-labelledby="membership-tab">
                         <div class="d-flex flex-column gap-4">
-                          <!--heading-->
-                          <h3 class="mb-0">
-                            Note Importante aux Utilisateurs
-
-                          </h3>
-                          <div class="d-flex flex-column gap-3">
-                            <!--content-->
-                            <div class="d-flex flex-column gap-1">
-                              <span>Le prix recommandé pour une séance de coaching par moi est de </span>
-                              <div class="d-flex flex-row align-items-center gap-1">
-                                <h3 class="mb-0 h2">300.00 € </h3>
-                                <small class="text-gray-800 fw-medium">/ Mois</small>
-                              </div>
+                            <h3 class="mb-0">Liste de mes réalisations</h3>
+                            <div class="d-flex flex-column gap-3">
+                                <div class="d-flex flex-column gap-3 mt-4">
+                                    @foreach ($prestataire->projects as $project)
+                                        <div class="d-flex flex-column gap-2 p-3 border rounded">
+                                            <h4 class="mb-0">{{ $project->title }}</h4>
+                                            <p class="mb-1">{{ $project->description }}</p>
+                                            <a href="{{ $project->url}}" class="text-primary" target="_blank">Lien du projet </a>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
-                            <div class="d-flex flex-column gap-2">
-                              <!--heading-->
-                              <div>
-                                <h4 class="mb-1">Les points à verifier </h4>
-                              </div>
-                              <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
-                                <li class="d-flex flex-row gap-2">
-                                  <!--icon-->
-                                  <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-video text-primary" viewBox="0 0 16 16">
-                                      <path d="M8 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"></path>
-                                      <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm10.798 11c-.453-1.27-1.76-3-4.798-3-3.037 0-4.345 1.73-4.798 3H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1z"></path>
-                                    </svg>
-                                  </span>
-                                  <!--text-->
-                                  <span>1 session/ chaque weekend</span>
-                                </li>
-                                <li class="d-flex flex-row gap-2">
-                                  <!--icon-->
-                                  <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots-fill text-primary" viewBox="0 0 16 16">
-                                      <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path>
-                                    </svg>
-                                  </span>
-                                  <!--text-->
-                                  <span>Contacter uniquement les certifiés </span>
-                                </li>
-
-                              </ul>
-                            </div>
-                          </div>
-
-
                         </div>
+
                       </div>
                       <div class="tab-pane fade" id="session" role="tabpanel" aria-labelledby="session-tab">
                         <div class="d-flex flex-column gap-4">

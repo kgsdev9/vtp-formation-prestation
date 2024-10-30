@@ -32,7 +32,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root'   => public_path() . '/prestation',
+            'root'   => public_path() . '/prestations',
             'throw' => false,
         ],
 

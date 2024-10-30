@@ -3,8 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Livewire\WithFileUploads;
 use App\Models\Prestataire;
+use Livewire\WithFileUploads;
+use App\Models\TypePrestation;
 use Illuminate\Support\Facades\Auth;
 
 class EditionProfilePrestataire extends Component
@@ -59,6 +60,7 @@ class EditionProfilePrestataire extends Component
                 'email' => $this->email,
                 'description' => $this->description,
                 'site_web' => $this->site_web,
+                'typepresatation_id' => $this->typepresatation_id
                 // 'active_at' => $this->active_at,
                 // Gérer le champ photo si vous le souhaitez
                 // 'photo' => $this->photo ? $this->photo->store('photos') : $prestataire->photo,
@@ -72,6 +74,8 @@ class EditionProfilePrestataire extends Component
 
     public function render()
     {
-        return view('livewire.edition-profile-prestataire')->extends('layout.layout');
+
+        $listetypeprestation = TypePrestation::all();
+        return view('livewire.edition-profile-prestataire', compact('listetypeprestation'))->extends('layout.layout');
     }
 }
