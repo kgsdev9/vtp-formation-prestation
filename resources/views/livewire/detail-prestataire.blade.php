@@ -16,7 +16,7 @@
                       <div class="d-flex flex-column gap-5">
                         <!--img-->
                         <div class="mt-n8">
-                          <img src="{{asset('mentor-img-single.jpg')}}" alt="mentor 1" class="img-fluid rounded-4 mt-n8">
+                          <img src="{{asset('assets/images/avatar/avatar-1.jpg')}}" alt="mentor 1" class="img-fluid rounded-4 mt-n8 w-20">
                         </div>
                         <div class="d-flex flex-column gap-5">
                           <div class="d-flex flex-column gap-3">
@@ -50,7 +50,7 @@
                                   ({{count($prestataire->notePrestations)}}&nbsp;Avis)
                                 </span>
                               </div>
-                             
+
                               <div class="d-flex flex-row gap-2 align-items-center lh-1">
                                 <!--icon-->
                                 <span>
@@ -116,7 +116,7 @@
                                 <div class="d-flex flex-row justify-content-between align-items-md-center">
                                     <div class="d-flex flex-row gap-3 align-items-center">
                                         <div>
-                                            <img src="{{ asset('path/to/avatar/'.$evaluation->user->avatar) }}" alt="avatar" class="avatar avatar-lg rounded-circle">
+                                            <img src="{{asset('assets/images/avatar/avatar-1.jpg')}}" alt="avatar" class="avatar avatar-lg rounded-circle">
                                         </div>
                                         <div>
                                             <h4 class="mb-1">{{ $evaluation->user->name }}</h4>
@@ -204,7 +204,7 @@
                                     <div class="mb-3">
                                         <label for="rating" class="form-label">Note</label>
                                         <select id="rating" class="form-select" wire:model="rating" required>
-                                            <option value="" disabled selected>Choisir une note</option>
+                                            <option value="">Choisir une note</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -294,10 +294,7 @@
 
 
                           </div>
-                          <!--button-->
-                          <div class="d-grid">
-                            <a href="#!" class="btn btn-primary">S'inscrire</a>
-                          </div>
+                         
                         </div>
                       </div>
                     </div>

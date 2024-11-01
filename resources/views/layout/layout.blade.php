@@ -42,26 +42,22 @@
                 </div>
             </div>
             <div>
-                <!-- Button -->
                 <button class="navbar-toggler collapsed ms-2"type="button"data-bs-toggle="collapse"data-bs-target="#navbar-default"aria-controls="navbar-default"aria-expanded="false"aria-label="Toggle navigation">
                     <span class="icon-bar top-bar mt-0"></span>
                     <span class="icon-bar middle-bar"></span>
                     <span class="icon-bar bottom-bar"></span>
                 </button>
             </div>
-            <!-- Collapse -->
             <div class="collapse navbar-collapse" id="navbar-default">
                 <ul class="navbar-nav mt-3 mt-lg-0 mx-xxl-auto">
                     <li class="nav-item dropdown"><a class="nav-link" href="{{route('home.formation')}}" >Nos Formations</a></li>
-                    <li class="nav-item dropdown"><a class="nav-link" href="{{route('home.categorie')}}" >Nos Catégories</a></li>
-                    <li class="nav-item dropdown"><a class="nav-link" href="{{route('formateur.annuaire')}}">Nos Prestataires</a></li>
+                    <li class="nav-item dropdown"><a class="nav-link" href="{{route('home.prestataire')}}">Nos Prestataires</a></li>
                     <li class="nav-item dropdown"><a class="nav-link " href="#" >Qui Sommes Nous?</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     @yield('content')
-
     <footer class="footer bg-dark-stable py-8 mt-2">
     <div class="container">
         <div class="row gy-6 gy-xl-0 pb-8">
@@ -162,7 +158,6 @@
             GROUP VTP
             </span>
         </div>
-        <!-- Links -->
         <div class="col-12 col-lg-6">
             <nav class="nav nav-footer justify-content-center justify-content-md-start justify-content-lg-end">
             <a class="nav-link active" href="{{route('CGU')}}">Conditions Générales d'Utilisation</a>

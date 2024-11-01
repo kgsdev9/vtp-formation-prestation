@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\HomeFormationComponent;
+use App\Http\Livewire\HomePrestataireComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Auth\LoginController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\AuthSocialController;
 use App\Http\Controllers\PrestationController;
 use App\Http\Controllers\SkillController;
+use App\Http\Livewire\CategoryFormationComponent;
 use App\Http\Livewire\CourseComponent;
 use App\Http\Livewire\DetailPrestataire;
 use App\Http\Livewire\EditionProfilePrestataire;
@@ -126,5 +128,6 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
     //nouvelles routes
 
     Route::get('/editionprofile', EditionProfilePrestataire::class) ->name('edition.prestataire.profile');
-
     Route::get('/formations', HomeFormationComponent::class) ->name('home.formation');
+    Route::get('/formations/bycategory/{id}', CategoryFormationComponent::class) ->name('category.formation.home');
+    Route::get('/prestataires', HomePrestataireComponent::class) ->name('home.prestataire');

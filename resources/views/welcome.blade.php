@@ -24,13 +24,11 @@
             <div class="animate-marquee d-flex gap-3">
                 @foreach ($listeprestataire as $vallFormateurs)
                 <a href="{{route('detail.prestataire', $vallFormateurs->id)}}" class="bg-white text-center shadow-sm text-wrap rounded-4 w-100 border card-lift border" style="width: 200px !important">
-                <!--img-->
                 <div class="p-3">
-                  <img src="../assets/images/mentor/mentor-img-2.jpg" alt="mentor 1" class="avatar avatar-xl rounded-circle">
-                  <!--content-->
+                  <img src="{{asset('assets/images/avatar/avatar-1.jpg')}}" alt="mentor 1" class="avatar avatar-xl rounded-circle">
                   <div class="mt-3">
-                    <h3 class="mb-0 h4">Andrew Lupien</h3>
-                    <span class="text-gray-800">Quality Assurance Engineer</span>
+                    <h3 class="mb-0 h4">{{$vallFormateurs->nom_prestataire}} {{$vallFormateurs->prenom_prestataire}}</h3>
+                    <span class="text-gray-800">{{$vallFormateurs->typeprestation->libelletypeprestation}}</span>
                   </div>
                 </div>
               </a>
@@ -53,37 +51,22 @@
         <div class="row gy-4">
           @foreach ($category as $vcategory)
           <div class="col-xl-3 col-lg-4 col-md-6 col-12">
-              <div class="card-hover-svg card card-body d-flex flex-column gap-4">
-
-                <div>
-                  <h3 class="mb-0">{{$vcategory->name}}</h3>
-                  <span class="text-gray-500">
-                    <span class="fw-bold">{{count($vcategory->courses)}}</span>
-                    Courses
-                  </span>
-                </div>
-              </div>
+            <a href="{{route('category.formation.home', $vcategory->id)}}">
+                <div class="card-hover-svg card card-body d-flex flex-column gap-4">
+                    <div>
+                      <h3 class="mb-0">{{$vcategory->name}}</h3>
+                      <span class="text-gray-500">
+                        <span class="fw-bold">{{count($vcategory->courses)}}</span>
+                        Courses
+                      </span>
+                    </div>
+                  </div>
+            </a>
             </div>
           @endforeach
-
-          <div class="col-12">
-            <div class="">
-              <a href="{{ route('home.categorie') }}" class="btn btn-outline-primary">
-                <span>Consulter plus </span>
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
-                </svg>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </section>
-    <!--explore categories-->
-    <!--Now Courses-->
-
-
 
     <section class="py-lg-8 py-5">
         <div class="container py-lg-8">
@@ -91,20 +74,14 @@
             <div class="row">
                 <div class="col-xl-10 col-md-10 col-12 mx-auto">
                   <div class="d-flex flex-column gap-2 text-center mb-xl-7 mb-5">
-                    <h2 class="h1 mb-0">Explorer nos Formations</h2>
+                    <h2 class="h1 mb-0">Explorer nos formations</h2>
                     <p class="mb-0 px-xl-5">Découvrez un monde de savoir à travers notre large gamme de cours diversifiés..</p>
                   </div>
                 </div>
               </div>
-            <div class="col-xl-7 col-lg-6 d-lg-flex justify-content-end d-none">
-              <div>
-                <img src="../../assets/images/landing-immigration/plane.png" alt="" style="transform: rotate(226deg); filter: opacity(0.5)">
-              </div>
-            </div>
           </div>
           <div class="row gy-4 gy-xl-0">
             @foreach ($allCourse as $course)
-
             <div class="col-xl-3 col-md-6 col-12">
 
                 <div class="card card-lift">
@@ -153,14 +130,9 @@
 
             </div>
             @endforeach
-
-
-
           </div>
         </div>
       </section>
-
-
 
 
     <section class="py-xl-8 py-6">
@@ -169,7 +141,7 @@
           <div class="col-xl-6 col-md-8 col-12 mx-auto">
             <div class="d-flex flex-column gap-2 text-center mb-xl-7 mb-5">
               <h2 class="mb-0 h1">Comment Nous Organisons nos formations</h2>
-              <p class="mb-0">ous adoptons une approche méthodique pour organiser nos formations afin de garantir une expérience d'apprentissage efficace et adaptée aux besoins de chaque apprenant. Voici comment nous procédons!</p>
+              <p class="mb-0">nous adoptons une approche méthodique pour organiser nos formations afin de garantir une expérience d'apprentissage efficace.</p>
             </div>
           </div>
         </div>
