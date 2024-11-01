@@ -24,7 +24,8 @@ class Entreprise extends Model
         'description',
         'logo',
         'nombre_employes',
-        'chiffre_affaires'
+        'chiffre_affaires',
+        'user_id'
     ];
 
 }

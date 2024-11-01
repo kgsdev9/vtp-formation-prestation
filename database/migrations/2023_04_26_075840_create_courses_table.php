@@ -28,10 +28,10 @@ return new class extends Migration
             $table->unsignedBigInteger('entreprise_id');
             $table->unsignedBigInteger('typecourse_id')->nullable();
             $table->unsignedBigInteger('category_id');
-            $table->foreign('level_id')->references('id')->on('levels');
-            $table->foreign('entreprise_id')->references('id')->on('entreprises');
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('typecourse_id')->references('id')->on('type_courses');
+            $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');;
+            $table->foreign('entreprise_id')->references('id')->on('entreprises')->onDelete('cascade');;
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');;
+            $table->foreign('typecourse_id')->references('id')->on('type_courses')->onDelete('cascade');;
             $table->timestamps();
         });
     }

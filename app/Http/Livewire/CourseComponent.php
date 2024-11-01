@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Course;
+use App\Models\Entreprise;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Services\CategoryService;
@@ -95,8 +96,10 @@ class CourseComponent extends Component
     {
         $this->validate();
 
-        // Sauvegarder les données
-        // Exemple : Vous pouvez sauvegarder dans une table "courses" ici.
+
+
+        $iduser = Auth::user()->id;
+        $entreprise = Entreprise::where('user_id', $iduser)->first();
         $course = new Course();
         $course->title = $this->title;
         $course->slug = Str::slug($this->title);
@@ -109,12 +112,12 @@ class CourseComponent extends Component
         $course->duration = $this->duration;
         $course->description = $this->description;
         // $course->typecourse_id =1;
-        $course->entreprise_id = Auth::user()->id;
+        $course->entreprise_id = $entreprise->id;
 
         $image = md5($this->image . microtime()).'.'.$this->image->extension();
         $this->image->storeAs('formation', $image);
 
-        $course->image = $this->image;
+        $course->image = $image;
 
         $course->save();
 
@@ -149,7 +152,9 @@ class CourseComponent extends Component
 
     public function render()
     {
-        $listeformation = Course::where('entreprise_id', Auth::user()->id)->get();
+        $iduser = Auth::user()->id;
+        $entreprise = Entreprise::where('user_id', $iduser)->first();
+        $listeformation = Course::where('entreprise_id', $entreprise->id)->paginate(10);
         return view('livewire.course-component', compact('listeformation'))->extends('layout.layout');
     }
 }

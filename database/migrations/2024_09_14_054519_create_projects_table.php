@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('url');
             $table->text('description');
             $table->unsignedBigInteger('prestataire_id');
-            $table->foreign('prestataire_id')->references('id')->on('prestataires');
+            $table->foreign('prestataire_id')->references('id')->on('prestataires')->onDelete('cascade');;
             $table->timestamps();
         });
     }

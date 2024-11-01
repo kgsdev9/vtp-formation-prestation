@@ -1,35 +1,32 @@
+@section('title', 'Mes Formations')
+
 <div>
     <main>
         <section class="pt-5 pb-5">
             <div class="container">
-
+                @include('profiledashboard.base.header')
 
                 <div class="row mt-0 mt-md-4">
                     @include('profiledashboard.nav-bar')
                     <div class="col-lg-9 col-md-12 col-12">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h3 class="h4 mb-0">Liste des formations</h3>
+                            <button wire:click="toggleForm" class="btn btn-primary mb-3 btn-sm">
+                                {{ $showForm ? 'Annuler' : 'Nouvelle Formation' }}
+                            </button>
+                        </div>
 
-                        <button wire:click="toggleForm" class="btn btn-primary mb-3">
-                            {{ $showForm ? 'Annuler' : 'Nouvelle Formation' }}
-                        </button>
-
-                        @if (Session::has('message'))
-                            <div class="alert alert-success">
-                                {{ Session::get('message') }}
-                            </div>
+                        @if (session()->has('message'))
+                            <div class="alert alert-success">{{ session('message') }}</div>
                         @endif
 
-                        <!-- Formulaire -->
                         @if ($showForm)
                         <div class="card mb-12">
-                            <div class="card-header border-bottom-0">
-                                <h3 class="mb-0">Nouvelle  Formation</h3>
-                            </div>
+
                             <div class="card-body">
                                 <form wire:submit.prevent="saveCourse">
-
                                     <!-- Étape 1 : Informations générales -->
                                     <div class="step" id="step1" style="display: {{ $currentStep === 1 ? 'block' : 'none' }};">
-
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control" wire:model="title" placeholder="Titre de la prestation">
                                             <label for="title">Titre de la Prestation</label>
@@ -72,7 +69,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- Champ exercicescours -->
+                                        <!-- Champs supplémentaires -->
                                         <div class="form-floating mb-3">
                                             <select class="form-control" wire:model="exercicescours">
                                                 <option value="">Oui ou Non</option>
@@ -83,7 +80,6 @@
                                             @error('exercicescours') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
 
-                                        <!-- Champ supportcours -->
                                         <div class="form-floating mb-3">
                                             <select class="form-control" wire:model="supportcours">
                                                 <option value="">Oui ou Non</option>
@@ -94,28 +90,24 @@
                                             @error('supportcours') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
 
-                                        <!-- Champ lien de la formation (URL vidéo) -->
                                         <div class="form-floating mb-3">
                                             <input type="url" class="form-control" wire:model="url_video" placeholder="Lien de la formation">
                                             <label for="url_video">Lien de la Formation (URL Vidéo)</label>
                                             @error('url_video') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
 
-                                        <!-- Champ durée de la formation -->
                                         <div class="form-floating mb-3">
                                             <input type="number" class="form-control" wire:model="duration" placeholder="Durée de la formation (en heures)">
                                             <label for="duration">Durée de la Formation (en heures)</label>
                                             @error('duration') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
 
-                                        <!-- Champ image de la formation -->
                                         <div class="form-floating mb-3">
                                             <input type="file" class="form-control" wire:model="image" placeholder="Image de la formation">
                                             <label for="image">Image de la Formation</label>
                                             @error('image') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
 
-                                        <!-- Champ description -->
                                         <div class="form-floating mb-3">
                                             <textarea class="form-control" wire:model="description" rows="4" placeholder="Description"></textarea>
                                             <label for="description">Décrivez le déroulement de la prestation</label>
@@ -125,7 +117,7 @@
                                         <button type="button" class="btn btn-primary" wire:click="nextStep">Suivant</button>
                                     </div>
 
-                                    <!-- Étape 2 : Ajouter des séquences -->
+                                    <!-- Étape 2 : Séquences -->
                                     <div class="step" id="step2" style="display: {{ $currentStep === 2 ? 'block' : 'none' }};">
                                         <h2>Les différentes séquences de prestation</h2>
                                         <table class="table table-bordered">
@@ -139,21 +131,14 @@
                                             <tbody>
                                                 @foreach($sequences as $index => $sequence)
                                                 <tr>
-                                                    <td>
-                                                        <input type="text" class="form-control" wire:model="sequences.{{ $index }}.title">
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" class="form-control" wire:model="sequences.{{ $index }}.duration">
-                                                    </td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-danger" wire:click="removeSequence({{ $index }})">Supprimer</button>
-                                                    </td>
+                                                    <td><input type="text" class="form-control" wire:model="sequences.{{ $index }}.title"></td>
+                                                    <td><input type="number" class="form-control" wire:model="sequences.{{ $index }}.duration"></td>
+                                                    <td><button type="button" class="btn btn-danger" wire:click="removeSequence({{ $index }})">Supprimer</button></td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
                                         <button type="button" class="btn btn-secondary" wire:click="addSequence">Ajouter une séquence</button>
-
                                         <button type="button" class="btn btn-secondary" wire:click="prevStep">Précédent</button>
                                         <button type="button" class="btn btn-primary" wire:click="nextStep">Suivant</button>
                                     </div>
@@ -178,27 +163,23 @@
                                             </tbody>
                                         </table>
                                         <button type="button" class="btn btn-secondary" wire:click="addKeyPoint">Ajouter un point</button>
-
                                         <button type="button" class="btn btn-secondary" wire:click="prevStep">Précédent</button>
                                         <button type="submit" class="btn btn-success">Enregistrer la formation</button>
                                     </div>
-
                                 </form>
-
-
-
                             </div>
                         </div>
                         @endif
 
-                        <!-- Table des prestations -->
+                        <!-- Table des formations -->
                         <div class="table-invoice table-responsive">
                             <table class="table mb-0 text-nowrap table-centered table-hover">
                                 <thead class="table-light">
                                     <tr>
-                                        <th scope="col">Prix</th>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">STATUS</th>
+                                        <th scope="col">Libelle </th>
+                                        <th scope="col">Prix </th>
+                                        <th scope="col">Catégorie</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -206,30 +187,27 @@
                                     @foreach ($listeformation as $value)
                                     <tr>
                                         <td>{{ $value->title }}</td>
-
-                                        <td>{{ $value->prix }} € - {{ $value->prix * 650 }} FCFA</td>
-                                        <td>{{ $value->description }}</td>
-                                        <td>
-                                            @if ($value->status == 'en attente')
-                                            <span class="badge bg-warning">En cours</span>
-                                            @elseif ($value->status == 'echec')
-                                            <span class="badge bg-danger">Echec</span>
-                                            @elseif ($value->status == 'effectue')
-                                            <span class="badge bg-success">Validée</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <button wire:click="deletePrestation({{$value->id}})" class="fe fe-trash"></button>
+                                        <td>{{ $value->prix }} €</td>
+                                        <td>{{ $value->category->name }}</td>
+                                        <td>{{ $value->status == 1 ? 'Activé' : 'Non Activé' }}</td>
+                                        <td class="text-end">
+                                            <button class="btn btn-primary">Modifier</button>
+                                            <button class="btn btn-danger">Supprimer</button>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
+
+                        <!-- Pagination -->
+                        <div class="mt-4">
+                            {{ $listeformation->links() }}
+                        </div>
+
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
 </div>

@@ -29,7 +29,9 @@ class CreateEntreprisesTable extends Migration
             $table->text('description')->nullable();
             $table->string('logo')->nullable();
             $table->integer('nombre_employes')->nullable();
-            $table->decimal('chiffre_affaires', 15, 2)->nullable(); 
+            $table->decimal('chiffre_affaires', 15, 2)->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
             $table->timestamps();
         });
 

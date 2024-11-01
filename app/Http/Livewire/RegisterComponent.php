@@ -81,8 +81,8 @@ class RegisterComponent extends Component
 
     public function submitForm()
     {
-
         $this->isSubmitting = true;
+        
         if ($this->accountType === 'entreprise')
         {
 
@@ -126,7 +126,8 @@ class RegisterComponent extends Component
                 'description'=> $this->description,
                 'nombre_employes'=> $this->nombre_employes,
                 'chiffre_affaires'=> $this->chiffre_affaires,
-                'photo' => $this->photo ? $this->photo->store('prestations_photos', 'public') : null,  // Gestion de la photo
+                'photo' => $this->photo ? $this->photo->store('prestations_photos', 'public') : null,
+                'user_id' => $user->id
             ]);
 
             $token = Str::random(60);
