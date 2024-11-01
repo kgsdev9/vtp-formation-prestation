@@ -1,19 +1,15 @@
 @extends('layout.layout')
-
 @section('content')
 <main>
     <section class="py-md-8 py-2" style="background-image: url(../assets/images/mentor/mentor-glow.svg); background-repeat: no-repeat; background-size: contain">
         <div class="container py-lg-6">
-          <!--row-->
           <div class="row align-items-center gy-4 justify-content-center">
             <div class="col-xxl-5 col-xl-6 col-md-10">
               <div class="d-flex flex-column gap-5 text-center">
                 <div class="d-flex flex-column gap-2">
                   <span class="text-dark fs-5">Trouver une formation et un prestataire facilement.</span>
-                  <!--heading-->
                   <h1 class="mb-0 display-4 fw-bold">
                     <span>Formation & Prestation</span>
-
                   </h1>
                 </div>
                 <div class="d-flex flex-column gap-3">
@@ -43,8 +39,6 @@
           </div>
         </div>
       </section>
-
-
 
     <section class="py-xl-8 py-2">
       <div class="container">
@@ -470,7 +464,6 @@
         </div>
       </div>
     </section>
-
   </main>
 
 @endsection

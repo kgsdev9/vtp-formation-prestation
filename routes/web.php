@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\HomeFormationComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Auth\LoginController;
@@ -125,3 +126,5 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
     //nouvelles routes
 
     Route::get('/editionprofile', EditionProfilePrestataire::class) ->name('edition.prestataire.profile');
+
+    Route::get('/formations', HomeFormationComponent::class) ->name('home.formation');

@@ -52,7 +52,7 @@
             <!-- Collapse -->
             <div class="collapse navbar-collapse" id="navbar-default">
                 <ul class="navbar-nav mt-3 mt-lg-0 mx-xxl-auto">
-                    <li class="nav-item dropdown"><a class="nav-link" href="{{route('formation.annuaire')}}" >Nos Formations</a></li>
+                    <li class="nav-item dropdown"><a class="nav-link" href="{{route('home.formation')}}" >Nos Formations</a></li>
                     <li class="nav-item dropdown"><a class="nav-link" href="{{route('home.categorie')}}" >Nos Catégories</a></li>
                     <li class="nav-item dropdown"><a class="nav-link" href="{{route('formateur.annuaire')}}">Nos Prestataires</a></li>
                     <li class="nav-item dropdown"><a class="nav-link " href="#" >Qui Sommes Nous?</a></li>
