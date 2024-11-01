@@ -11,30 +11,13 @@
                 <div class="d-flex flex-column gap-2">
                   <span class="text-dark fs-5">Trouver une formation et un prestataire facilement.</span>
                   <!--heading-->
-                  <h1 class="mb-0 display-2 fw-bold">
+                  <h1 class="mb-0 display-4 fw-bold">
                     <span>Formation & Prestation</span>
 
                   </h1>
                 </div>
                 <div class="d-flex flex-column gap-3">
-                  <!--form-->
-                  <form>
-                    <div class="input-group mb-3">
-                      <label for="mentorFind" class="form-label visually-hidden"></label>
-                      <input type="text" class="form-control form-control-lg" >
-                      <button class="btn btn-primary btn-sm" id="basic-addon2">Rechercher</button>
-                    </div>
-                  </form>
-
-                  <div class="gap-2 d-flex flex-wrap justify-content-center">
-                    <a href="./mentor-list.html" class="btn btn-tag btn-sm">Frontend</a>
-                    <a href="./mentor-list.html" class="btn btn-tag btn-sm">Devops</a>
-                    <a href="./mentor-list.html" class="btn btn-tag btn-sm">UI/UX designer</a>
-                    <a href="./mentor-list.html" class="btn btn-tag btn-sm">Data Science</a>
-                    <a href="./mentor-list.html" class="btn btn-tag btn-sm">Full Stack</a>
-                    <a href="./mentor-list.html" class="btn btn-tag btn-sm">Backend</a>
-                    <a href="./mentor-list.html" class="btn btn-tag btn-sm">Data Analyst</a>
-                  </div>
+                    <h5>Leader de la formation et la prestation </h5>
                 </div>
               </div>
             </div>
@@ -44,7 +27,7 @@
           <div class="position-relative d-flex overflow-x-hidden py-lg-4 pt-4">
             <div class="animate-marquee d-flex gap-3">
                 @foreach ($listeprestataire as $vallFormateurs)
-                <a href="./mentor-single.html" class="bg-white text-center shadow-sm text-wrap rounded-4 w-100 border card-lift border" style="width: 200px !important">
+                <a href="{{route('detail.prestataire', $vallFormateurs->id)}}" class="bg-white text-center shadow-sm text-wrap rounded-4 w-100 border card-lift border" style="width: 200px !important">
                 <!--img-->
                 <div class="p-3">
                   <img src="../assets/images/mentor/mentor-img-2.jpg" alt="mentor 1" class="avatar avatar-xl rounded-circle">
