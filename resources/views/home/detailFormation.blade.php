@@ -154,7 +154,7 @@
                 </div>
               </div>
 
-        
+
               <div class="d-flex flex-column gap-3">
                 <div class="d-flex flex-column flex-md-row align-items-md-center">
                   <span class="d-flex flex-row gap-2">
@@ -163,14 +163,14 @@
                         <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
                       </svg>
                     </span>
-                    <h2 class="mb-0">4.7évaluation du cours</h2>
+                    <h2 class="mb-0">Les Avis </h2>
                   </span>
                   <span class="d-none d-md-block">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-dot text-gray-500" viewBox="0 0 16 16">
                       <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"></path>
                     </svg>
                   </span>
-                  <h2 class="mb-0">30 000 notes</h2>
+                
                 </div>
                 <div class="row gy-4">
                   <div class="col-lg-6 col-12">
@@ -241,19 +241,16 @@
                   <div class="card">
                     <a href="#!"><img src="{{asset('sauvegarde/formation/'.$course->image)}}" alt="formation-image" class="img-fluid w-100 card-img-top"></a>
                     <div class="card-body d-flex flex-column gap-4">
-
                       <div class="d-grid flex-column gap-2">
-                        <a href="#!" class="btn btn-primary">Acheter la formaiton</a>
+                        <a href="#!" class="btn btn-primary">Acheter la formaiton {{$course->prix}} €</a>
                         <a href="#!" class="btn btn-outline-primary">Commander la formation</a>
                       </div>
                       <div class="text-center d-flex flex-column gap-2 text-gray-500">
-                        <span class="">30-Garantie de remboursement de 30 jours</span>
-                        <span class="">Accès complet à vie</span>
+                        <span class="">Satisfait ou remboursé ! Inscrivez-vous à notre formation sans crainte. Si vous n'êtes pas entièrement satisfait dans les 30 jours, nous vous remboursons intégralement. Rejoignez-nous dès aujourd'hui !</span>
                       </div>
                     </div>
                   </div>
                   <div class="card">
-                    <!-- Card body -->
                     <div class="card-body">
                       <div class="d-flex align-items-center">
                         <div class="position-relative">
@@ -263,41 +260,10 @@
                           </a>
                         </div>
                         <div class="ms-4">
-                          <h4 class="mb-0">Jenny Wilson</h4>
-                          <p class="mb-1 fs-6">Front-end Developer, Designer</p>
-                          <p class="fs-6 mb-1 d-flex align-items-center">
-                            <span class="text-warning">4.5</span>
-                            <span class="mx-1">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
-                              </svg>
-                            </span>
-                            Instructor Rating
-                          </p>
+                          <h4 class="mb-0">{{$course->entreprise->nom_entreprise}}</h4>
+                          <p class="mb-1 fs-6">{{$course->entreprise->adresse}}</p>
                         </div>
                       </div>
-                      <div class="border-top row mt-3 border-bottom mb-3 g-0">
-                        <div class="col">
-                          <div class="pe-1 ps-2 py-3">
-                            <h5 class="mb-0">11,604</h5>
-                            <span>Students</span>
-                          </div>
-                        </div>
-                        <div class="col border-start">
-                          <div class="pe-1 ps-3 py-3">
-                            <h5 class="mb-0">32</h5>
-                            <span>Courses</span>
-                          </div>
-                        </div>
-                        <div class="col border-start">
-                          <div class="pe-1 ps-3 py-3">
-                            <h5 class="mb-0">12,230</h5>
-                            <span>Reviews</span>
-                          </div>
-                        </div>
-                      </div>
-                      <p>I am an Innovation designer focussing on UX/UI based in Berlin. As a creative resident at Figma explored the city of the future and how new technologies.</p>
-                      <a href="instructor-profile.html" class="btn btn-outline-secondary btn-sm">View Details</a>
                     </div>
                   </div>
                 </div>

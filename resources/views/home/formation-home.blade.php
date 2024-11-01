@@ -79,40 +79,54 @@
 						<h3 class="pb-0 fw-bold text-dark m-0">Toutes nos formations </h3>
 					</div>
 					<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 mb-5">
-                        @foreach ($allCourses as $value)
-                        <div class="col">
-							<div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden video-card-item position-relative">
-								<img src="{{ asset('courss/images/'.$value->image) }}" class="img-fluid" alt="#" loading="lazy" style="height:150px">
-								<div class="card-body">
-									<h6 class="card-title pb-3 text-black mb-0">
-										<span class="bg-warning badge text-black me-2"> {{ $value->category->name }}</span>
-                                        {{ $value->title }}
-									</h6>
-									<p class="card-text mb-0">
-										Publié par 
-									</p>
-									<div class="card-text text-muted small">
+                        @foreach ($allCourses as $course)
+                        <div class="col-xl-4 col-md-6 col-12">
 
-                                        {{ Str::limit($value->url_video, 100) }}
-									</div>
-								</div>
-								<div class="card-footer border-0 bg-white border-top p-3">
-									<div class="d-flex align-items-center justify-content-between mb-3">
-										<span class="badge bg-danger text-white">{{ $value->level->name }}</span>
-                                        <div class="card-price text-danger">
-                                            Soit
-                                            <span class="text-black">
-                                                {{ $value->prix * 650}} FCFA
-                                            </span>
-                                        </div>
-									</div>
-									<div class="d-grid">
-										<button class="btn btn-primary"><i class="bi bi-cart-fill"></i> {{ $value->prix}} €</button>
-									</div>
-									<a href="{{ route('detail.course', $value->slug) }}" class="stretched-link"></a>
-								</div>
-							</div>
-						</div>
+                            <div class="card card-lift">
+                                <a href="{{ route('detail.course', $course->slug) }}">
+                                  <img src="{{asset('sauvegarde/formation/'.$course->image)}}" alt="formation-image" class="card-img-top img-fluid w-100">
+                                </a>
+                                <div class="card-body d-flex flex-column gap-4">
+                                  <div class="d-flex flex-column gap-2">
+                                    <div>
+                                      <span class="badge text-light-emphasis bg-light-subtle border border-light-subtle rounded-pill">{{$course->category->name}}</span>
+                                    </div>
+                                    <h3 class="mb-0 h4">
+                                      <a href="{{ route('detail.course', $course->slug) }}" class="text-inherit">{{$course->title}}</a>
+                                    </h3>
+
+                                    <small class="text-secondary">{{$course->entreprise->nom_entreprise}}</small>
+                                    <div class="lh-1">
+                                      <span class="text-secondary fw-semibold">5.0</span>
+                                      <span class="align-text-top">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path>
+                                        </svg>
+                                      </span>
+
+                                      <span class="text-gray-500">{{rand(10, 30)}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="d-flex flex-row gap-2 align-items-center">
+                                    <span class="fw-semibold text-dark">{{$course->prix}} € </span>
+
+                                  </div>
+                                </div>
+                              </div>
+
+                        </div>
 					  @endforeach
 					</div>
 				</div>
