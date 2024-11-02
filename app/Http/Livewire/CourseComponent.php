@@ -109,6 +109,8 @@ class CourseComponent extends Component
     {
         $this->validate();
 
+      
+
         $this->isLoading = true;
 
         // Vérifie si on est en mode création ou édition
@@ -145,9 +147,13 @@ class CourseComponent extends Component
         foreach ($this->sequences as $sequence) {
             $course->sequences()->create($sequence);
         }
-        foreach ($this->keyPoints as $point) {
-            $course->keyPoints()->create($point);
+        foreach ($this->keyPoints as $keyPoint) {
+            $course->keyPoints()->create([
+                'key_points' => $keyPoint['point'],
+                'course_id' => $course->id,
+            ]);
         }
+
 
         $this->resetForm();
         $this->isLoading = false;
