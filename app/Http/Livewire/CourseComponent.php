@@ -19,6 +19,8 @@ class CourseComponent extends Component
 
     public $showForm = false;
 
+    public $isLoading = false;
+
     public function toggleForm()
     {
         $this->showForm = !$this->showForm;
@@ -52,18 +54,31 @@ class CourseComponent extends Component
         $this->courses = $this->courseService->all();
     }
 
-    protected $rules = [
-        'title' => 'required|string|max:255',
-        'prix' => 'required|numeric|min:0',
-        'category_id' => 'required|exists:categories,id',
-        'level_id' => 'required|exists:levels,id',
-        'exercicescours' => 'required|string|in:oui,non',
-        'supportcours' => 'required|string|in:oui,non',
-        'url_video' => 'nullable|url',
-        'duration' => 'required|numeric|min:1',
-        'image' => 'nullable|image|max:1024',
-        'description' => 'required|string|min:10',
-    ];
+    protected function rules()
+    {
+
+        $rules = [
+            'title' => 'required|string|max:255',
+            'prix' => 'required|numeric',
+            'category_id' => 'required|exists:categories,id',
+            'level_id' => 'required|exists:levels,id',
+            'exercicescours' => 'required|in:oui,non',
+            'supportcours' => 'required|in:oui,non',
+            'url_video' => 'nullable|url',
+            'duration' => 'required|numeric',
+            'description' => 'required|string',
+        ];
+
+
+        if ($this->courseId) {
+            $rules['image'] = 'nullable';
+        } else {
+            $rules['image'] = 'required';
+        }
+
+        return $rules;
+    }
+
 
     public function nextStep()
     {
@@ -90,15 +105,17 @@ class CourseComponent extends Component
         $this->keyPoints[] = ['point' => ''];
     }
 
-
     public function saveCourse()
     {
         $this->validate();
+
+        $this->isLoading = true;
 
         // Vérifie si on est en mode création ou édition
         $course = $this->courseId ? Course::find($this->courseId) : new Course();
         $iduser = Auth::user()->id;
         $entreprise = Entreprise::where('user_id', $iduser)->first();
+
         // Mise à jour des données du modèle
         $course->title = $this->title;
         $course->slug = Str::slug($this->title);
@@ -111,8 +128,9 @@ class CourseComponent extends Component
         $course->duration = $this->duration;
         $course->description = $this->description;
         $course->entreprise_id = $entreprise->id;
+
         // Gestion de l'image
-        if ($this->image) {
+        if ($this->image && is_object($this->image)) { // Vérifiez si c'est un objet
             $imageName = md5($this->image->getClientOriginalName() . microtime()) . '.' . $this->image->getClientOriginalExtension();
             $img = Image::make($this->image->getRealPath())->resize(800, 600);
             $img->save(public_path('formation/' . $imageName));
@@ -131,10 +149,13 @@ class CourseComponent extends Component
             $course->keyPoints()->create($point);
         }
 
-        // Réinitialise le formulaire et l'ID de la formation pour préparer une nouvelle saisie
         $this->resetForm();
+        $this->isLoading = false;
         session()->flash('message', $this->courseId ? 'Formation mise à jour avec succès.' : 'Formation enregistrée avec succès.');
+
+        return redirect()->route('formation.index');
     }
+
 
 
     public function resetForm()

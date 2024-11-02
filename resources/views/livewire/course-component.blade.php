@@ -29,11 +29,11 @@
 
                                 <div class="card-body">
                                     <form wire:submit.prevent="saveCourse">
-                                        <!-- Étape 1 : Informations générales -->
+
                                         <div class="step" id="step1" style="display: {{ $currentStep === 1 ? 'block' : 'none' }};">
                                             <div class="form-floating mb-3">
                                                 <input type="text" class="form-control" wire:model="title" placeholder="Titre de la prestation">
-                                                <label for="title">Titre de la Prestation</label>
+                                                <label for="title">Titre de la formation</label>
                                                 @error('title') <span class="text-danger">{{ $message }}</span> @enderror
                                             </div>
 
@@ -114,7 +114,7 @@
 
                                             <div class="form-floating mb-3">
                                                 <textarea class="form-control" wire:model="description" rows="4" placeholder="Description"></textarea>
-                                                <label for="description">Décrivez le déroulement de la prestation</label>
+                                                <label for="description">Décrivez le déroulement de la formation</label>
                                                 @error('description') <span class="text-danger">{{ $message }}</span> @enderror
                                             </div>
 
@@ -123,7 +123,7 @@
 
                                         <!-- Étape 2 : Séquences -->
                                         <div class="step" id="step2" style="display: {{ $currentStep === 2 ? 'block' : 'none' }};">
-                                            <h2>Les différentes séquences de prestation</h2>
+                                            <h2>Les différentes séquences de la formation</h2>
                                             <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
@@ -168,7 +168,11 @@
                                             </table>
                                             <button type="button" class="btn btn-secondary" wire:click="addKeyPoint">Ajouter un point</button>
                                             <button type="button" class="btn btn-secondary" wire:click="prevStep">Précédent</button>
-                                            <button type="submit" class="btn btn-success">Enregistrer la formation</button>
+                                            <button type="submit" class="btn btn-success" wire:loading.attr="disabled">
+                                                <span wire:loading wire:target="saveCourse" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                Enregistrer la formation
+                                            </button>
+
                                         </div>
                                     </form>
                                 </div>
@@ -187,7 +191,7 @@
                                                     <div class="ms-lg-3 mt-2 mt-lg-0">
                                                         <h4 class="text-primary-hover">
                                                             {{ $value->title }}
-                                                            <span class="badge bg-success-soft">statut</span>
+                                                           
                                                         </h4>
                                                         <ul class="list-inline fs-6 mb-0 text-inherit">
                                                             <li class="list-inline-item">
