@@ -37,6 +37,11 @@ class HomeController extends Controller
         $this->codeCommande = rand(1230, 15000).'SAS-FORMATION' ;
     }
 
+    public function buyformation($id){
+
+        return view('home.achatformation');
+    }
+
     public function detailPrestataire($id) {
 
         $prestataire = Prestataire::find($id);
@@ -48,6 +53,9 @@ class HomeController extends Controller
 
         return view('home.detailprestataire', compact('prestataire', 'listeskills', 'listeprestations'));
     }
+
+
+
 
 
     public function home() {

@@ -124,12 +124,10 @@ Route::get('/confirmated_compte' , [AuthController::class, 'verificationAcount']
 
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
     ->name('verification.verify')
-    ->middleware(['signed', 'throttle:6,1']); // Ajout des middlewares "signed" et "throttle" pour limiter les requêtes
-
-    //nouvelles routes
-
+    ->middleware(['signed', 'throttle:6,1']);
     Route::get('/editionprofile', EditionProfilePrestataire::class) ->name('edition.prestataire.profile');
     Route::get('/formations', HomeFormationComponent::class) ->name('home.formation');
     Route::get('/formations/bycategory/{id}', CategoryFormationComponent::class) ->name('category.formation.home');
     Route::get('/prestataires', HomePrestataireComponent::class) ->name('home.prestataire');
-    Route::get('/profile-entreprise', EditProfileEntreprise::class) ->name('profile.entreprise');
+    Route::get('/buy-formation/{id}', [HomeController::class, 'buyformation']) ->name('buy.formation');
+
