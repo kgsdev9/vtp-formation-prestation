@@ -70,7 +70,7 @@
                         <div class="col">
                             <div class="card card-lift">
                                 <a href="{{ route('detail.course', $course->slug) }}">
-                                    <img src="{{ asset('sauvegarde/formation/' . $course->image) }}" alt="formation-image"
+                                    <img src="{{ asset('formation/' . $course->image) }}" alt="formation-image"
                                          class="card-img-top img-fluid w-100">
                                 </a>
                                 <div class="card-body d-flex flex-column gap-4">

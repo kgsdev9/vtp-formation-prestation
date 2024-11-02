@@ -13,7 +13,7 @@
                     <h1 class="mb-0 fw-bold text-center">Connexion</h1>
                     <span>
                       Vous n'avez pas de compte ?
-                      <a href="/" class="ms-1 text-dark">Inscrivez-vous</a>
+                      <a href="{{route('become.teacher')}}" class="ms-1 text-dark">Inscrivez-vous</a>
                     </span>
                   </div>
                 </div>

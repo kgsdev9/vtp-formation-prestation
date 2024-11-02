@@ -170,7 +170,7 @@
                       <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"></path>
                     </svg>
                   </span>
-                
+
                 </div>
                 <div class="row gy-4">
                   <div class="col-lg-6 col-12">
@@ -239,7 +239,7 @@
               <div class="sidebar__inner" style="position: relative; transform: translate3d(0px, 0px, 0px);">
                 <div class="d-flex flex-column gap-4">
                   <div class="card">
-                    <a href="#!"><img src="{{asset('sauvegarde/formation/'.$course->image)}}" alt="formation-image" class="img-fluid w-100 card-img-top"></a>
+                    <a href="#!"><img src="{{asset('formation/'.$course->image)}}" alt="formation-image" class="img-fluid w-100 card-img-top"></a>
                     <div class="card-body d-flex flex-column gap-4">
                       <div class="d-grid flex-column gap-2">
                         <a href="#!" class="btn btn-primary">Acheter la formaiton {{$course->prix}} €</a>

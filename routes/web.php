@@ -30,6 +30,7 @@ use App\Http\Livewire\CategoryFormationComponent;
 use App\Http\Livewire\CourseComponent;
 use App\Http\Livewire\DetailPrestataire;
 use App\Http\Livewire\EditionProfilePrestataire;
+use App\Http\Livewire\EditProfileEntreprise;
 use App\Http\Livewire\PrestationComponent;
 use App\Http\Livewire\ProjetComponent;
 use App\Http\Middleware\AdminMddleware;
@@ -131,3 +132,4 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
     Route::get('/formations', HomeFormationComponent::class) ->name('home.formation');
     Route::get('/formations/bycategory/{id}', CategoryFormationComponent::class) ->name('category.formation.home');
     Route::get('/prestataires', HomePrestataireComponent::class) ->name('home.prestataire');
+    Route::get('/profile-entreprise', EditProfileEntreprise::class) ->name('profile.entreprise');

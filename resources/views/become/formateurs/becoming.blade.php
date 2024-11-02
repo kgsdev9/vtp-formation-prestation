@@ -1,5 +1,5 @@
 @extends('layout.layout')
-@section('title', 'Devenir Prestataire')
+@section('title', 'Je crée mon compte   ')
 @section('content')
     <livewire:register-component />
 

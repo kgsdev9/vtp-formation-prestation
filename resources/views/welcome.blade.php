@@ -1,42 +1,52 @@
 @extends('layout.layout')
 @section('content')
 <main>
-    <section class="py-md-8 py-2" style="background-image: url(../assets/images/mentor/mentor-glow.svg); background-repeat: no-repeat; background-size: contain">
-        <div class="container py-lg-6">
-          <div class="row align-items-center gy-4 justify-content-center">
-            <div class="col-xxl-5 col-xl-6 col-md-10">
-              <div class="d-flex flex-column gap-5 text-center">
-                <div class="d-flex flex-column gap-2">
-                  <span class="text-dark fs-5">Trouver une formation et un prestataire facilement.</span>
-                  <h1 class="mb-0 display-4 fw-bold">
-                    <span>Formation & Prestation</span>
-                  </h1>
+    <section class="py-xl-16 pt-lg-8" style="background-image: url(assets/images/mentor-glow.svg); background-repeat: no-repeat; background-size: contain">
+        <div class="">
+            <div class="container px-4 px-lg-0">
+                <!-- Hero Section -->
+                <div class="row align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 col-md-12 py-6 py-xl-0">
+                        <div class="mb-4 text-center">
+                            <!-- Caption -->
+                            <h1 class="display-3 fw-bold mb-3 ls-sm">
+                                <span class="text-primary">VTP FORMATION</span>
+                                , votre partenaire
+                                <br>
+                                en formations et prestations
+                            </h1>
+                            <p class="mb-6">
+                                VTP FORMATION est la plateforme idéale pour découvrir des formations professionnelles adaptées à vos besoins. Améliorez vos compétences avec un design fluide et des fonctionnalités avancées pour un apprentissage moderne.
+                            </p>
+                            <!-- List -->
+                            <a href="/formations" class="btn btn-primary" title="Consulter nos formations">
+                                <i class="bi bi-book-fill me-2"></i>
+                                Consulter nos formations
+                            </a>
+                            <a href="#demo" class="btn btn-outline-white ms-2" title="Aperçu des formations">
+                                Aperçu
+                                <i class="bi bi-box-arrow-up-right ms-2"></i>
+                            </a>
+                            <div class="mt-5">
+                                <div>
+                                    <div class="badge bg-transparent text-dark border border-dark border-opacity-25 me-2">
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        5.0
+                                    </div>
+                                    Plus de
+                                    <span class="text-dark fw-bold">1,250+</span>
+                                    formations disponibles sur VTP FORMATION.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="d-flex flex-column gap-3">
-                    <h5>Leader de la formation et la prestation </h5>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-        <div>
-          <div class="position-relative d-flex overflow-x-hidden py-lg-4 pt-4">
-            <div class="animate-marquee d-flex gap-3">
-                @foreach ($listeprestataire as $vallFormateurs)
-                <a href="{{route('detail.prestataire', $vallFormateurs->id)}}" class="bg-white text-center shadow-sm text-wrap rounded-4 w-100 border card-lift border" style="width: 200px !important">
-                <div class="p-3">
-                  <img src="{{asset('assets/images/avatar/avatar-1.jpg')}}" alt="mentor 1" class="avatar avatar-xl rounded-circle">
-                  <div class="mt-3">
-                    <h3 class="mb-0 h4">{{$vallFormateurs->nom_prestataire}} {{$vallFormateurs->prenom_prestataire}}</h3>
-                    <span class="text-gray-800">{{$vallFormateurs->typeprestation->libelletypeprestation}}</span>
-                  </div>
-                </div>
-              </a>
-              @endforeach
-            </div>
-          </div>
-        </div>
-      </section>
+    </section>
+
+
+
 
     <section class="py-xl-8 py-2">
       <div class="container">
@@ -86,7 +96,7 @@
 
                 <div class="card card-lift">
                     <a href="{{ route('detail.course', $course->slug) }}">
-                      <img src="{{asset('sauvegarde/formation/'.$course->image)}}" alt="formation-image" class="card-img-top img-fluid w-100">
+                      <img src="{{asset('formation/'.$course->image)}}" alt="formation-image" class="card-img-top img-fluid w-100">
                     </a>
                     <div class="card-body d-flex flex-column gap-4">
                       <div class="d-flex flex-column gap-2">
@@ -150,7 +160,7 @@
             <div class="d-flex flex-column gap-xl-8 gap-6">
               <div class="d-flex flex-row gap-5">
                 <div>
-                  <svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg class="text-dark" width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_8075_497)">
                       <path
                         d="M81.7954 68.4606H6.35197C4.68041 68.4606 3.00884 67.792 1.89446 66.5662C0.668641 65.3404 0 63.6688 0 62.1087V7.83842C0 6.16685 0.668641 4.49528 1.89446 3.26946C3.12027 2.04364 4.68041 1.375 6.35197 1.375H81.7954C83.467 1.375 85.1386 2.04364 86.253 3.26946C87.4788 4.49528 88.1474 6.05541 88.1474 7.83842V62.1087C88.1474 63.7802 87.4788 65.4518 86.253 66.5662C85.1386 67.792 83.467 68.4606 81.7954 68.4606ZM6.35197 2.82371C5.01472 2.82371 3.78886 3.38089 2.89736 4.27239C2.00585 5.27533 1.44868 6.50116 1.44868 7.72697V61.9972C1.44868 63.2231 1.89442 64.4489 2.89736 65.4518C3.9003 66.4547 5.12613 67.012 6.46338 67.012H81.9069C83.2441 67.012 84.4699 66.4547 85.3614 65.5632C86.2529 64.6717 86.8102 63.4459 86.8102 62.1087V7.83842C86.8102 6.50116 86.2529 5.27534 85.3614 4.38384C84.4699 3.49233 83.2441 2.93516 81.9069 2.93516H6.35197V2.82371Z"
@@ -216,15 +226,7 @@
                     <h3 class="mb-0">Évaluation des besoins</h3>
                     <p class="mb-0 pe-xl-4">Nous commençons par comprendre les besoins spécifiques de nos clients, qu'il s'agisse d'institutions ou de particuliers.</p>
                   </div>
-                  <div class="">
-                    <a href="#!" class="icon-link icon-link-hover text-dark">
-                      <span>Nous Contacter</span>
 
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                      </svg>
-                    </a>
-                  </div>
                 </div>
               </div>
               <div class="d-flex flex-row gap-5">
@@ -261,15 +263,7 @@
                     <h3 class="mb-0">Choix des formats</h3>
                     <p class="mb-0 pe-xl-4">ous proposons divers formats de formation, y compris des cours en ligne, des sessions en présentiel, des ateliers interactifs, et des formations hybrides.</p>
                   </div>
-                  <div>
-                    <a href="#!" class="icon-link icon-link-hover text-dark">
-                      <span>Nous Contacter</span>
 
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                      </svg>
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
@@ -324,15 +318,7 @@
                     <h3 class="mb-0">Conception des programmes</h3>
                     <p class="mb-0 pe-xl-4">En fonction des besoins identifiés, nous concevons des programmes de formation sur mesure..</p>
                   </div>
-                  <div>
-                    <a href="#!" class="icon-link icon-link-hover text-dark">
-                      <span>Nous Contacter</span>
 
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                      </svg>
-                    </a>
-                  </div>
                 </div>
               </div>
               <div class="d-flex flex-row gap-5">
@@ -420,15 +406,7 @@
                     <h3 class="mb-0">Sélection des formateurs</h3>
                     <p class="mb-0 pe-xl-4">Nous faisons appel à des experts et des professionnels qualifiés dans chaque domaine..</p>
                   </div>
-                  <div>
-                    <a href="#!" class="icon-link icon-link-hover text-dark">
-                      <span>Nous Contacter</span>
 
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                      </svg>
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>

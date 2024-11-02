@@ -10,6 +10,7 @@ use App\Services\CategoryService;
 use App\Services\LevelService;
 use Livewire\WithFileUploads;
 use App\Services\CourseService;
+use Intervention\Image\Facades\Image;
 use Str;
 
 class CourseComponent extends Component
@@ -27,6 +28,7 @@ class CourseComponent extends Component
     public $sequences = [];
     public $keyPoints = [];
     public $currentStep = 1;
+    public $courseId;
     public $categories;
     public $levels;
     public $courses;
@@ -37,12 +39,9 @@ class CourseComponent extends Component
 
     public function mount(CategoryService $categoryService, LevelService $levelService, CourseService $courseService)
     {
-        // Initialisation des services
         $this->categoryService = $categoryService;
         $this->levelService = $levelService;
         $this->courseService = $courseService;
-
-        // Charger les données nécessaires au montage du composant
         $this->loadData();
     }
 
@@ -96,11 +95,11 @@ class CourseComponent extends Component
     {
         $this->validate();
 
-
-
+        // Vérifie si on est en mode création ou édition
+        $course = $this->courseId ? Course::find($this->courseId) : new Course();
         $iduser = Auth::user()->id;
         $entreprise = Entreprise::where('user_id', $iduser)->first();
-        $course = new Course();
+        // Mise à jour des données du modèle
         $course->title = $this->title;
         $course->slug = Str::slug($this->title);
         $course->prix = $this->prix;
@@ -111,30 +110,32 @@ class CourseComponent extends Component
         $course->url_video = $this->url_video;
         $course->duration = $this->duration;
         $course->description = $this->description;
-        // $course->typecourse_id =1;
         $course->entreprise_id = $entreprise->id;
-
-        $image = md5($this->image . microtime()).'.'.$this->image->extension();
-        $this->image->storeAs('formation', $image);
-
-        $course->image = $image;
+        // Gestion de l'image
+        if ($this->image) {
+            $imageName = md5($this->image->getClientOriginalName() . microtime()) . '.' . $this->image->getClientOriginalExtension();
+            $img = Image::make($this->image->getRealPath())->resize(800, 600);
+            $img->save(public_path('formation/' . $imageName));
+            $course->image = $imageName;
+        }
 
         $course->save();
 
-        // Sauvegarder les séquences et les points clés associés
+        // Met à jour les séquences et points clés
+        $course->sequences()->delete();
+        $course->keyPoints()->delete();
         foreach ($this->sequences as $sequence) {
             $course->sequences()->create($sequence);
         }
-
         foreach ($this->keyPoints as $point) {
             $course->keyPoints()->create($point);
         }
 
-        // Réinitialiser le formulaire après enregistrement
+        // Réinitialise le formulaire et l'ID de la formation pour préparer une nouvelle saisie
         $this->resetForm();
-
-        session()->flash('message', 'Formation enregistrée avec succès.');
+        session()->flash('message', $this->courseId ? 'Formation mise à jour avec succès.' : 'Formation enregistrée avec succès.');
     }
+
 
     public function resetForm()
     {
@@ -148,6 +149,35 @@ class CourseComponent extends Component
     {
         unset($this->keyPoints[$index]);
         $this->keyPoints = array_values($this->keyPoints); // Re-index array
+    }
+
+    public function deleteCourse($courseId)
+    {
+        $course = Course::find($courseId);
+        $course->delete();
+
+        session()->flash('message', 'Cours supprimé avec succès.');
+    }
+
+    public function editCourse($id)
+    {
+        $course = Course::with(['sequences', 'keyPoints'])->findOrFail($id);
+
+        $this->showForm = true;
+        $this->title = $course->title;
+        $this->prix = $course->prix;
+        $this->courseId = $course->id;
+        $this->category_id = $course->category_id;
+        $this->level_id = $course->level_id;
+        $this->exercicescours = $course->exercicescours;
+        $this->supportcours = $course->supportcourrs;
+        $this->url_video = $course->url_video;
+        $this->duration = $course->duration;
+        $this->description = $course->description;
+        $this->image = $course->image;
+
+        $this->sequences = $course->sequences->toArray();
+        $this->keyPoints = $course->keyPoints->toArray();
     }
 
     public function render()
