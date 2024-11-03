@@ -1,5 +1,5 @@
 <div>
-
+    @section('title', 'Prestataires')
     <main>
         <!--hero section-->
         <section class="py-5">

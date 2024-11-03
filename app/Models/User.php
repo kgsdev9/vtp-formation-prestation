@@ -23,13 +23,14 @@ class User extends Authenticatable  implements MustVerifyEmail
         'email',
         'password',
         'role_id',
+        'owner_id',
         'confirmation_at',
         'confirmated_at',
         'suscribe_id'
     ];
 
 
-   
+
 
 
     public function specialites()

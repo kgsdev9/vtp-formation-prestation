@@ -1,5 +1,5 @@
 <div>
-    <!-- Section breadcrumb et titre -->
+   @section('title', 'Formations')
     <section class="py-5">
         <div class="container">
             <div class="row">

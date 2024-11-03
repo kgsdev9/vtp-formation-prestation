@@ -1,4 +1,5 @@
 @extends('layout.layout')
+@section('title', 'Bienvenue sur VTP FORMATION PRESTATION')
 @section('content')
 <main>
     <section class="py-xl-16 pt-lg-8" style="background-image: url(assets/images/mentor-glow.svg); background-repeat: no-repeat; background-size: contain">
@@ -18,13 +19,9 @@
                             <p class="mb-6">
                                 VTP FORMATION est la plateforme idéale pour découvrir des formations professionnelles adaptées à vos besoins. Améliorez vos compétences avec un design fluide et des fonctionnalités avancées pour un apprentissage moderne.
                             </p>
-                            <!-- List -->
-                            <a href="/formations" class="btn btn-primary" title="Consulter nos formations">
-                                <i class="bi bi-book-fill me-2"></i>
+
+                            <a href="/formations" class="btn btn-outline-white ms-2" title="Aperçu des formations">
                                 Consulter nos formations
-                            </a>
-                            <a href="#demo" class="btn btn-outline-white ms-2" title="Aperçu des formations">
-                                Aperçu
                                 <i class="bi bi-box-arrow-up-right ms-2"></i>
                             </a>
                             <div class="mt-5">
@@ -33,9 +30,9 @@
                                         <i class="bi bi-star-fill text-warning me-1"></i>
                                         5.0
                                     </div>
-                                    Plus de
-                                    <span class="text-dark fw-bold">1,250+</span>
-                                    formations disponibles sur VTP FORMATION.
+                                    Notre objectif pour 2025 avoir plus
+                                    <span class="text-dark fw-bold">de 1000 +</span>
+                                    formations et prestations VTP FORMATION.
                                 </div>
                             </div>
                         </div>

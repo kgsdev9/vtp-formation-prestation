@@ -25,8 +25,14 @@ public function countCategory() {
 }
 
 public function categoryTakeRandom() {
-    return $this->category->inRandomOrder()->take('8')->orderBy('name')->get();
+  
+    return $this->category->whereHas('courses') // Filtre pour les catégories ayant des cours
+                           ->inRandomOrder()
+                           ->take(8)
+                           ->orderBy('name')
+                           ->get();
 }
+
 
 public function categoryenVogue() {
     return $this->category->where('tendance', 'vogue')->get();

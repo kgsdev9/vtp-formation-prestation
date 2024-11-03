@@ -25,6 +25,16 @@ class HomeFormationComponent extends Component
         $categories = Category::all();
         $level = Level::all();
 
+    //     $categories = Category::whereHas('courses') // Filtre les catégories ayant des cours
+    //     ->inRandomOrder()
+    //     ->orderBy('name')
+    //     ->get();
+
+    // $level = Level::whereHas('courses') // Filtre les niveaux ayant des cours
+    //     ->orderBy('name')
+    //     ->get();
+
+
         return view('livewire.home-formation-component', compact('allCourses', 'categories', 'level'))
             ->extends('layout.layout');
     }
