@@ -36,6 +36,6 @@ class CategoryFormationComponent extends Component
 
     public function render()
     {
-        return view('livewire.category-formation-component')->extends('layout.layout');
+        return view('livewire.category-format   ion-component')->extends('layout.layout');
     }
 }

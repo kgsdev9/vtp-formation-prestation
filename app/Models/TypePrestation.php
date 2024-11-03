@@ -14,6 +14,4 @@ class TypePrestation extends Model
     ];
 
 
-
-
 }

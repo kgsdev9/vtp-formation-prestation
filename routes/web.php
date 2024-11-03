@@ -2,7 +2,12 @@
 
 use App\Http\Livewire\HomeFormationComponent;
 use App\Http\Livewire\HomePrestataireComponent;
+use App\Http\Livewire\SpecialiteComponentIndex;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\UserComponentIndex;
+use App\Http\Livewire\CourseComponentIndex;
+use App\Http\Livewire\PrestataireComponentIndex;
+use App\Http\Livewire\EntrepriseComponentIndex;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\GestionCommande;
@@ -26,6 +31,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\AuthSocialController;
 use App\Http\Controllers\PrestationController;
 use App\Http\Controllers\SkillController;
+use App\Http\Livewire\CategoryComponentIndex;
 use App\Http\Livewire\CategoryFormationComponent;
 use App\Http\Livewire\CourseComponent;
 use App\Http\Livewire\DetailPrestataire;
@@ -124,10 +130,39 @@ Route::get('/confirmated_compte' , [AuthController::class, 'verificationAcount']
 
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
     ->name('verification.verify')
-    ->middleware(['signed', 'throttle:6,1']);
+    ->middleware(['signed', 'throttle:6,1']); // Ajout des middlewares "signed" et "throttle" pour limiter les requêtes
+
+    //nouvelles routes
+
     Route::get('/editionprofile', EditionProfilePrestataire::class) ->name('edition.prestataire.profile');
     Route::get('/formations', HomeFormationComponent::class) ->name('home.formation');
     Route::get('/formations/bycategory/{id}', CategoryFormationComponent::class) ->name('category.formation.home');
     Route::get('/prestataires', HomePrestataireComponent::class) ->name('home.prestataire');
+    Route::get('/buy-formation', EditProfileEntreprise::class) ->name('profile.entreprise');
     Route::get('/buy-formation/{id}', [HomeController::class, 'buyformation']) ->name('buy.formation');
+    Route::get('/contact', function() {
+        return view('home.contact');
+    })->name('contact');
 
+    Route::get('/apropos', function() {
+        return view('home.apropos');
+    })->name('about');
+
+
+    Route::get('/faq', function() {
+        return view('home.faq');
+    })->name('faq');
+
+
+    Route::get('/poltique-confidentialite', function() {
+        return view('home.poltiqueconfidentiaite');
+    })->name('politique.confidentialite');
+
+
+
+    Route::get('/categorie-component', CategoryComponentIndex::class) ->name('index.categorie');
+    Route::get('/specialite-component', SpecialiteComponentIndex::class) ->name('index.specialites');
+    Route::get('/entreprises', EntrepriseComponentIndex::class)->name('entreprise.index');
+    Route::get('/prestataires-componet', PrestataireComponentIndex::class)->name('prestataires.index');
+    Route::get('/cours', CourseComponentIndex::class)->name('courses.index');
+    Route::get('/users', UserComponentIndex::class)->name('users.index');

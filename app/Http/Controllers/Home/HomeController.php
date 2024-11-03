@@ -39,7 +39,8 @@ class HomeController extends Controller
 
     public function buyformation($id){
 
-        return view('home.achatformation');
+        $course = Course::find($id);
+        return view('home.achatformation', compact('course'));
     }
 
     public function detailPrestataire($id) {

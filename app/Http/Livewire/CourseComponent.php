@@ -109,7 +109,7 @@ class CourseComponent extends Component
     {
         $this->validate();
 
-      
+
 
         $this->isLoading = true;
 
@@ -149,7 +149,7 @@ class CourseComponent extends Component
         }
         foreach ($this->keyPoints as $keyPoint) {
             $course->keyPoints()->create([
-                'key_points' => $keyPoint['point'],
+                'key_points' => $keyPoint['point']?? '',
                 'course_id' => $course->id,
             ]);
         }
@@ -211,6 +211,7 @@ class CourseComponent extends Component
     {
         $iduser = Auth::user()->id;
         $entreprise = Entreprise::where('user_id', $iduser)->first();
+
         $listeformation = Course::where('entreprise_id', $entreprise->id)->paginate(10);
         return view('livewire.course-component', compact('listeformation'))->extends('layout.layout');
     }

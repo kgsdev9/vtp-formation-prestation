@@ -117,7 +117,7 @@
                 </div>
               </div>
               <div class="d-flex flex-column gap-3">
-                <h2 class="mb-0">Ce que vous retirerez de ce cours</h2>
+                <h2 class="mb-0">Information à retenir</h2>
 
                 <div class="border rounded-3 p-4">
 

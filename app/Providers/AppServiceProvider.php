@@ -44,5 +44,9 @@ class AppServiceProvider extends ServiceProvider
             return $user->role->name == "prestataire";
          });
 
+         Gate::define('is_admin', function(User $user) {
+            return $user->role->name == "Super Admin";
+         });
+
     }
 }

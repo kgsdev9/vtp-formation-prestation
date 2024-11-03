@@ -83,6 +83,46 @@
                     </li>
                     @endcan
 
+                    @can(['is_admin'])
+
+                    <li class="nav-item {{ request()->routeIs('index.categorie') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('index.categorie') }}">
+                            <i class="fe fe-settings *nav-icon"></i>Gestion des catégories
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item {{ request()->routeIs('index.specialites') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('index.specialites') }}">
+                            <i class="fe fe-settings nav-icon"></i>Gestion des specialites
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ request()->routeIs('entreprise.index') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('entreprise.index') }}">
+                            <i class="fe fe-settings nav-icon"></i>Gestion des Entreprises
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ request()->routeIs('prestataires.index') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('prestataires.index') }}">
+                            <i class="fe fe-settings nav-icon"></i>Gestion des Prestataires
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ request()->routeIs('courses.index') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('courses.index') }}">
+                            <i class="fe fe-settings nav-icon"></i>Gestion des Cours
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ request()->routeIs('users.index') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('users.index') }}">
+                            <i class="fe fe-settings nav-icon"></i>Gestion Users
+                        </a>
+                    </li>
+                    @endcan
+
                     <li class="nav-item">
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
@@ -93,7 +133,8 @@
                         </a>
                     </li>
 
-                  
+
+
                 </ul>
             </div>
         </div>

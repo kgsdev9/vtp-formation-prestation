@@ -150,7 +150,7 @@
         <div class="row">
           <div class="col-xl-6 col-md-8 col-12 mx-auto">
             <div class="d-flex flex-column gap-2 text-center mb-xl-7 mb-5">
-              <h2 class="mb-0 h1">Comment Nous Organisons nos formations</h2>
+              <h2 class="mb-0 h1">Comment nous organisons nos formations</h2>
               <p class="mb-0">nous adoptons une approche méthodique pour organiser nos formations afin de garantir une expérience d'apprentissage efficace.</p>
             </div>
           </div>
@@ -261,7 +261,7 @@
                 <div class="d-flex flex-column gap-4">
                   <div class="d-flex flex-column gap-2">
                     <h3 class="mb-0">Choix des formats</h3>
-                    <p class="mb-0 pe-xl-4">ous proposons divers formats de formation, y compris des cours en ligne, des sessions en présentiel, des ateliers interactifs, et des formations hybrides.</p>
+                    <p class="mb-0 pe-xl-4">Nous proposons divers formats de formation, y compris des cours en ligne, des sessions en présentiel, des ateliers interactifs, et des formations hybrides.</p>
                   </div>
 
                 </div>

@@ -52,7 +52,7 @@
                 <ul class="navbar-nav mt-3 mt-lg-0 mx-xxl-auto">
                     <li class="nav-item dropdown"><a class="nav-link" href="{{route('home.formation')}}" >Nos Formations</a></li>
                     <li class="nav-item dropdown"><a class="nav-link" href="{{route('home.prestataire')}}">Nos Prestataires</a></li>
-                    <li class="nav-item dropdown"><a class="nav-link " href="#" >Qui Sommes Nous?</a></li>
+                    <li class="nav-item dropdown"><a class="nav-link " href="{{route('about')}}" >Qui Sommes Nous?</a></li>
                 </ul>
             </div>
         </div>
@@ -74,9 +74,7 @@
             <div class="d-flex flex-column gap-3">
             <span class="text-dark-stable">Ressources</span>
             <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
-                <li>
-                <a href="#!" class="nav-link">A Propos</a>
-                </li>
+
                 <li>
                 <a href="#!" class="nav-link">Dévenir Partenaire</a>
                 </li>
@@ -92,10 +90,10 @@
             <span class="text-dark-stable">Communauté</span>
             <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
                 <li>
-                <a href="#!" class="nav-link">Aide et Support</a>
+                <a href="{{route('contact')}}" class="nav-link">Aide et Support</a>
                 </li>
                 <li>
-                <a href="#!" class="nav-link">Nos Prestataires recommandés</a>
+                <a href="{{route('home.prestataire')}}" class="nav-link">Nos Prestataires recommandés</a>
                 </li>
 
             </ul>
@@ -108,12 +106,8 @@
                 <li>
                 <a href="https://vtp-market.com/" class="nav-link" target="_blank">Vtp Market </a>
                 </li>
-                <li>
-                <a href="#!" class="nav-link" target="_blank">VTP Livraison</a>
-                </li>
-                <li>
-                <a href="#!" class="nav-link" target="_blank">Documentation</a>
-                </li>
+
+
             </ul>
             </div>
         </div>
@@ -123,16 +117,8 @@
                 <span class="text-dark-stable">Contact</span>
                 <ul class="list-unstyled mb-0 d-flex flex-column nav nav-footer nav-x-0">
                 <li>
-                    Adresse :
-                    <span class="fw-semibold">+3357554555545</span>
-                </li>
-                <li>
-                    Temps:
-                    <span class="fw-semibold">8H à 18:H </span>
-                </li>
-                <li>
                     Email:
-                    <span class="fw-semibold">vtp-sas@gmail.com</span>
+                    <span class="fw-semibold">vtp.sas.contact@gmail.com</span>
                 </li>
                 </ul>
             </div>
@@ -161,8 +147,8 @@
         <div class="col-12 col-lg-6">
             <nav class="nav nav-footer justify-content-center justify-content-md-start justify-content-lg-end">
             <a class="nav-link active" href="{{route('CGU')}}">Conditions Générales d'Utilisation</a>
-            <a class="nav-link" href="#!">Politique de confidentialité</a>
-            <a class="nav-link" href="#!">Faq</a>
+            <a class="nav-link" href="{{route('politique.confidentialite')}}">Politique de confidentialité</a>
+            <a class="nav-link" href="{{route('faq')}}">Faq</a>
             </nav>
         </div>
         </div>

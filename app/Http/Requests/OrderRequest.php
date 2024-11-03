@@ -23,7 +23,13 @@ class OrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'payment_method' => 'required',
+            'paymentMethod' => 'required',
+            'phone' => 'required',
+            'adresse' => 'required',
+            'email' => 'required',
+            'fullname' => 'required',
+            'amount' => 'required'
+
         ];
     }
 }

@@ -191,7 +191,7 @@
                                                     <div class="ms-lg-3 mt-2 mt-lg-0">
                                                         <h4 class="text-primary-hover">
                                                             {{ $value->title }}
-                                                           
+
                                                         </h4>
                                                         <ul class="list-inline fs-6 mb-0 text-inherit">
                                                             <li class="list-inline-item">

@@ -14,6 +14,7 @@ class ProjetComponent extends Component
     public $showForm = false;
     public $title, $slug, $description, $url, $is_published = false;
     public $projectId;
+    protected $paginationTheme = 'bootstrap';
 
     protected $rules = [
         'title' => 'required|string|max:255',
