@@ -21,7 +21,7 @@ class CreatePrestatairesTable extends Migration
             $table->unsignedBigInteger('typepresatation_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('typepresatation_id')->references('id')->on('type_prestations');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('adresse');
             $table->string('ville');
             $table->string('pays');

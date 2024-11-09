@@ -91,7 +91,7 @@ class CourseComponent extends Component
     }
     public function addSequence()
     {
-        $this->sequences[] = ['title' => '', 'duration' => ''];
+        $this->sequences[] = ['title' => '', 'duration' => '', 'typeduree'=> ''];
     }
 
     public function removeSequence($index)
@@ -107,6 +107,9 @@ class CourseComponent extends Component
 
     public function saveCourse()
     {
+
+
+
         $this->validate();
 
 
@@ -144,9 +147,17 @@ class CourseComponent extends Component
         // Met à jour les séquences et points clés
         $course->sequences()->delete();
         $course->keyPoints()->delete();
+
+
         foreach ($this->sequences as $sequence) {
-            $course->sequences()->create($sequence);
+            $course->sequences()->create([
+                'title' => $sequence['title']?? '',
+                'duration' => $sequence['duration']?? '',
+                'type_duree' => $sequence['typeduree']?? '',
+                'course_id' => $course->id,
+            ]);
         }
+
         foreach ($this->keyPoints as $keyPoint) {
             $course->keyPoints()->create([
                 'key_points' => $keyPoint['point']?? '',
@@ -202,7 +213,6 @@ class CourseComponent extends Component
         $this->duration = $course->duration;
         $this->description = $course->description;
         $this->image = $course->image;
-
         $this->sequences = $course->sequences->toArray();
         $this->keyPoints = $course->keyPoints->toArray();
     }

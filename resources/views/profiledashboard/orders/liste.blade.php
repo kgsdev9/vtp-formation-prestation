@@ -52,6 +52,7 @@
                                             </td>
 											<td>
 												<a href="{{route('orders.detail', $value->id)}}" class="fe fe-eye"></a>
+                                             
 											</td>
 										</tr>
                                         @endforeach

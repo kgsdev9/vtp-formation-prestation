@@ -43,9 +43,19 @@
                                         </div>
 
                                         <div class="form-floating mb-3">
-                                            <input type="number" class="form-control" wire:model="duration" id="duration" placeholder="Durée (en heures)">
-                                            <label for="duration">Durée (en heures)</label>
+                                            <input type="number" class="form-control" wire:model="duration" id="duration" placeholder="Durée (en nombre)">
+                                            <label for="duration">Durée</label>
                                             @error('duration') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
+
+                                        <!-- Nouveau champ type_duree -->
+                                        <div class="form-floating mb-3">
+                                            <select class="form-control" wire:model="type_duree" id="type_duree">
+                                                <option value="heure">Heures</option>
+                                                <option value="minute">Minutes</option>
+                                            </select>
+                                            <label for="type_duree">Type de Durée</label>
+                                            @error('type_duree') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
 
                                         <button type="submit" class="btn btn-success">{{ $prestationId ? 'Mettre à jour' : 'Enregistrer' }}</button>
@@ -59,6 +69,7 @@
                                                 <th>Intitulé</th>
                                                 <th>Prix</th>
                                                 <th>Description</th>
+                                                <th>Durée</th> <!-- Ajout d'une colonne pour afficher la durée -->
                                                 <th>Statut</th>
                                                 <th>Actions</th>
                                             </tr>
@@ -67,8 +78,11 @@
                                             @foreach ($listeprestation as $value)
                                             <tr>
                                                 <td>{{ $value->title }}</td>
-                                                <td>{{ $value->prix }} € - {{ $value->prix * 650 }} FCFA</td>
+                                                <td>{{ $value->prix }} €</td>
                                                 <td>{{ $value->description }}</td>
+                                                <td>
+                                                    {{ $value->duree_estimee }} {{ $value->type_duree }}
+                                                </td>
                                                 <td>
                                                     @if ($value->status == 'en attente')
                                                         <span class="badge bg-warning">En cours</span>

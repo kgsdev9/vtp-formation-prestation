@@ -1,9 +1,6 @@
 <div class="col-lg-3 col-md-4 col-12">
-    <!-- User profile -->
     <nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
-        <!-- Menu -->
         <a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
-        <!-- Button -->
         <button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light"
             type="button" data-bs-toggle="collapse" data-bs-target="#sidenav"
             aria-controls="sidenav" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +11,6 @@
             <div class="navbar-nav flex-column">
                 <span class="navbar-header">Menu </span>
                 <ul class="list-unstyled ms-n2 mb-4">
-                    <!-- Nav item -->
                     <li class="nav-item {{ request()->is('dashboard.users') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('dashboard.users') }}">
                             <i class="fe fe-home nav-icon"></i>Accueil
@@ -24,7 +20,7 @@
                     @can(['is_prestataire'])
                     <li class="nav-item {{ request()->routeIs('prestation.index') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('prestation.index') }}">
-                            <i class="fe fe-briefcase nav-icon"></i> Projets
+                            <i class="fe fe-briefcase nav-icon"></i>
                             Mes Prestations
                         </a>
                     </li>
@@ -32,14 +28,14 @@
                     <li class="nav-item {{ request()->routeIs('skills.index') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('skills.index') }}">
                             <i class="fe fe-award nav-icon"></i> Compétences
-                             Mes Skills
+
                         </a>
                     </li>
 
                     <li class="nav-item {{ request()->routeIs('projet.index') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('projet.index') }}">
                             <i class="fe fe-folder nav-icon"></i> Projets
-                            Mes Projets
+
                         </a>
                     </li>
 
@@ -51,7 +47,7 @@
 
                     <li class="nav-item {{ request()->routeIs('factures.*') ? 'active' : '' }}">
                         <a class="nav-link" href="#">
-                            <i class="fe fe-file-text nav-icon"></i> Factures
+                            <i class="fe fe-file-text nav-icon"></i>
                             Mes Factures
                         </a>
                     </li>

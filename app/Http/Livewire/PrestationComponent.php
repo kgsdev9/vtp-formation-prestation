@@ -13,6 +13,7 @@ class PrestationComponent extends Component
     public $showForm = false; // Pour afficher/masquer le formulaire
     public $title, $amount, $description, $duration;
     public $prestationId;
+    public $type_duree;
 
     protected $rules = [
         'title' => 'required|string|max:255',
@@ -31,7 +32,6 @@ class PrestationComponent extends Component
     {
         $this->reset(['title', 'amount', 'description', 'duration', 'prestationId']);
     }
-
     public function savePrestation()
     {
         $this->validate();
@@ -45,8 +45,9 @@ class PrestationComponent extends Component
                 'title' => $this->title,
                 'description' => $this->description,
                 'prix' => $this->amount,
-                'prestataire_id' => $prestataire->id,
+                'prestaire_id' => $prestataire->id,
                 'duree_estimee' => $this->duration,
+                'type_duree' => $this->type_duree
             ]
         );
 
@@ -56,6 +57,8 @@ class PrestationComponent extends Component
         $this->emit('prestationAdded');
     }
 
+
+
     public function editPrestation($id)
     {
         $prestation = Prestation::findOrFail($id);
@@ -64,9 +67,10 @@ class PrestationComponent extends Component
         $this->amount = $prestation->prix;
         $this->description = $prestation->description;
         $this->duration = $prestation->duree_estimee;
-
+        $this->type_duree = $prestation->type_duree; // Charger le type de durée
         $this->showForm = true;
     }
+
 
     public function deletePrestation($id)
     {
@@ -78,7 +82,10 @@ class PrestationComponent extends Component
 
     public function render()
     {
-        $listeprestation = Prestation::all();
+        $iduser = Auth::user()->id;
+        $prestataire = Prestataire::where('user_id', $iduser)->first();
+        $listeprestation = Prestation::where('prestaire_id', $prestataire->id)->get();
+
         return view('livewire.prestation-component', compact('listeprestation'));
     }
 }

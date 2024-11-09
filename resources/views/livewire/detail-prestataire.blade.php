@@ -31,10 +31,13 @@
                                 </div>
                               </div>
                               <!--button-->
+                              @can('is_admin')
                               <div class="d-flex flex-row gap-3 align-items-center">
 
                                 <a href="#!" class="btn btn-outline-white">Me Faire mentorer</a>
                               </div>
+                              @endcan
+
                             </div>
                             <div class="d-flex flex-md-row flex-column gap-md-4 gap-2">
                               <div class="d-flex flex-row gap-2 align-items-center lh-1">

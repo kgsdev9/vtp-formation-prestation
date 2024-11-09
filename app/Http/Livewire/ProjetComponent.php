@@ -94,7 +94,9 @@ class ProjetComponent extends Component
 
     public function render()
     {
-        $projects = Project::where('prestataire_id', Auth::user()->id)->get();
+        $iduser = Auth::user()->id;
+        $prestataire = Prestataire::where('user_id', $iduser)->first();
+        $projects = Project::where('prestataire_id', $prestataire->id)->get();
         return view('livewire.projet-component', compact('projects'))->extends('layout.layout');
     }
 }

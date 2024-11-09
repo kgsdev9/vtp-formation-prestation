@@ -15,7 +15,8 @@ class Prestation extends Model
         'prix',
         'is_published',
         'prestaire_id',
-        'duree_estimee'
+        'duree_estimee',
+        'type_duree'
     ];
 
 }

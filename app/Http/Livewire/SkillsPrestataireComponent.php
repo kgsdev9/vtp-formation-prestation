@@ -71,7 +71,9 @@ class SkillsPrestataireComponent extends Component
 
     public function render()
     {
-        $listePerformances = PerfomancePrestataire::where('prestataire_id', Auth::user()->id)->get();
+        $iduser = Auth::user()->id;
+        $prestataire = Prestataire::where('user_id', $iduser)->first();
+        $listePerformances = PerfomancePrestataire::where('prestataire_id', $prestataire->id)->get();
         return view('livewire.skills-prestataire-component', compact('listePerformances'));
     }
 }

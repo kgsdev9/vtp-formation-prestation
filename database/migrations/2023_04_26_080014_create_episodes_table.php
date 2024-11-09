@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('duration');
+            $table->enum('type_duree', ['heure', 'minute']);
             $table->string('previsualiation')->nullable();
             $table->string('url')->nullable();
             $table->unsignedBigInteger('course_id');

@@ -21,6 +21,7 @@ class CreatePrestationsTable extends Migration
             $table->boolean('is_published')->default('0');
             $table->unsignedBigInteger('prestaire_id')->nullable();
             $table->integer('duree_estimee')->nullable();
+            $table->enum('type_duree', ['heure', 'minute']);
             $table->foreign('prestaire_id')->references('id')->on('prestataires')->onDelete('cascade');;
             $table->timestamps();
         });

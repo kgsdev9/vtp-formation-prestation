@@ -82,10 +82,9 @@ class RegisterComponent extends Component
     public function submitForm()
     {
         $this->isSubmitting = true;
-        
+
         if ($this->accountType === 'entreprise')
         {
-
            $data=  $this->validate([
                 'company_name' => 'required|string|max:255',
                 'siren' => 'required|string|max:255',
@@ -111,7 +110,7 @@ class RegisterComponent extends Component
                 'role_id' => 5,
             ]);
 
-            $prestation = Entreprise::create([
+            $entreprise = Entreprise::create([
                 'nom_entreprise' => $this->company_name,
                 'siren' => $this->siren,
                 'numero_tva' => $this->numero_tva,
@@ -129,6 +128,10 @@ class RegisterComponent extends Component
                 'photo' => $this->photo ? $this->photo->store('prestations_photos', 'public') : null,
                 'user_id' => $user->id
             ]);
+
+            // $user->update([
+            //     'owner_id' => $entreprise->id
+            // ]);
 
             $token = Str::random(60);
             // Envoyer la notification avec le lien de confirmation
@@ -175,9 +178,16 @@ class RegisterComponent extends Component
                 'photo' => $this->photo ? $this->photo->store('prestations_photos', 'public') : null,  // Gestion de la photo
             ]);
 
+            // $user->update([
+            //     'owner_id' => $prestation->id
+            // ]);
+
             $token = Str::random(60);
             // Envoyer la notification avec le lien de confirmation
             $user->notify(new AccountConfirmation($token));
+
+
+
 
             return redirect()->route('confirmated.compte');
 
@@ -196,6 +206,10 @@ class RegisterComponent extends Component
                 'password' => Hash::make($this->password),
                 'role_id' => 3,
             ]);
+
+            // $user->update([
+            //     'owner_id' => $user->id
+            // ]);
 
             // Générer un token unique pour la confirmation
             $token = Str::random(60);

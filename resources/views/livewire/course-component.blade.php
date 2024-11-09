@@ -129,16 +129,29 @@
                                                     <tr>
                                                         <th>Titre de la séquence</th>
                                                         <th>Durée</th>
+                                                        <th>TypeDuree</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($sequences as $index => $sequence)
-                                                    <tr>
-                                                        <td><input type="text" class="form-control" wire:model="sequences.{{ $index }}.title"></td>
-                                                        <td><input type="number" class="form-control" wire:model="sequences.{{ $index }}.duration"></td>
-                                                        <td><button type="button" class="btn btn-danger" wire:click="removeSequence({{ $index }})">Supprimer</button></td>
-                                                    </tr>
+                                                    @foreach ($sequences as $index => $sequence)
+                                                        <tr>
+                                                            <td>
+                                                                <input type="text" class="form-control" wire:model="sequences.{{ $index }}.title" placeholder="Titre de la séquence">
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" class="form-control" wire:model="sequences.{{ $index }}.duration" placeholder="Durée (en nombre)">
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control" wire:model="sequences.{{ $index }}.typeduree">
+                                                                    <option value="heure">Heures</option>
+                                                                    <option value="minute">Minutes</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-danger" wire:click="removeSequence({{ $index }})">Supprimer</button>
+                                                            </td>
+                                                        </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
