@@ -89,7 +89,8 @@ class RegisterComponent extends Component
                 'company_name' => 'required|string|max:255',
                 'siren' => 'required|string|max:255',
                 'numero_tva' => 'nullable|string|max:255',
-                'type_entreprise' => 'required|string|max:255',
+                'password' => 'required|string|min:8|confirmed',
+                'type_entreprise' => 'required',
                 'adresse' => 'required|string|max:255',
                 'ville' => 'required|string|max:255',
                 'code_postal' => 'required|string|max:255',
@@ -106,7 +107,7 @@ class RegisterComponent extends Component
             $user = User::create([
                 'name' => $this->company_name,
                 'email' => $this->email,
-                'password' => Hash::make(12345),
+                'password' => Hash::make($this->password),
                 'role_id' => 5,
             ]);
 
@@ -149,6 +150,7 @@ class RegisterComponent extends Component
                 'email' => 'required|email|max:255|unique:users,email',
                 'adresse' => 'required|string',
                 'ville' => 'required|string',
+                'password' => 'required',
                 'pays' => 'required|string',
                 'telephone' => 'required|string',
                 'description' => 'required|string',
@@ -158,7 +160,7 @@ class RegisterComponent extends Component
             $user = User::create([
                 'name' => $this->nom_prestataire,
                 'email' => $this->email,
-                'password' => Hash::make(12345),
+              'password' => Hash::make($this->password),
                 'role_id' => 4,
             ]);
 

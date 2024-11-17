@@ -1,4 +1,4 @@
-
+@section('title', $prestataire->nom_prestataire)
 <div>
     <main>
         <!--hero section-->

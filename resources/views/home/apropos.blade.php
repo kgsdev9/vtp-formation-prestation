@@ -1,5 +1,5 @@
 @extends('layout.layout')
-
+@section('title', 'A propos')
 @section('content')
 <main>
     <section class="container d-flex flex-column vh-100">

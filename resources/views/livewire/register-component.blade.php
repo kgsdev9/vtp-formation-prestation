@@ -254,7 +254,7 @@
 
                             <div class="row">
                                 <!-- Logo -->
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div class="form-floating">
                                         <input type="file" wire:model="logo" class="form-control @error('logo') is-invalid @enderror" id="logo" placeholder="Logo">
                                         <label for="logo">Logo</label>
@@ -263,6 +263,13 @@
                                                 {{ $message }}
                                             </div>
                                         @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-floating">
+                                        <input type="password" wire:model="password" class="form-control" id="password" placeholder="password">
+                                        <label for="photo">Password</label>
+                                         @error('photo') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                             </div>
@@ -398,10 +405,17 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div class="form-floating">
                                         <input type="file" wire:model="photo" class="form-control" id="photo" placeholder="Photo">
                                         <label for="photo">Photo</label>
+                                         @error('photo') <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-floating">
+                                        <input type="password" wire:model="password" class="form-control" id="password" placeholder="password">
+                                        <label for="photo">Password</label>
                                          @error('photo') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
